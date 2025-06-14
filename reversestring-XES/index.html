@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Reverser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .result-group {
+            margin-bottom: 25px;
+        }
+
+        .result {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            background: #f0f8ff;
+            color: #333;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .methods {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e1e5e9;
+        }
+
+        .method {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .method h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .method p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .method code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .demo-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 String Reverser</h1>
+        
+        <div class="input-group">
+            <label for="inputString">Enter text to reverse:</label>
+            <input type="text" id="inputString" placeholder="Type something here..." autocomplete="off">
+        </div>
+        
+        <div class="result-group">
+            <label>Reversed text:</label>
+            <div class="result" id="result">Your reversed text will appear here...</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value" id="charCount">0</span>
+                <span class="stat-label">Characters</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="wordCount">0</span>
+                <span class="stat-label">Words</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="palindrome">❓</span>
+                <span class="stat-label">Palindrome</span>
+            </div>
+        </div>
+
+        <div class="demo-buttons">
+            <button class="demo-btn" onclick="setDemo('Hello World!')">Demo 1</button>
+            <button class="demo-btn" onclick="setDemo('JavaScript is awesome!')">Demo 2</button>
+            <button class="demo-btn" onclick="setDemo('racecar')">Palindrome</button>
+            <button class="demo-btn" onclick="setDemo('A man a plan a canal Panama')">Long Text</button>
+            <button class="demo-btn" onclick="clearInput()">Clear</button>
+        </div>
+
+        <div class="methods">
+            <h2 style="color: #333; margin-bottom: 20px;">🛠️ Reversal Methods Used</h2>
+            
+            <div class="method">
+                <h3>Method 1: split() + reverse() + join()</h3>
+                <p>The most common and readable approach:</p>
+                <code>string.split('').reverse().join('')</code>
+                <p>Splits the string into an array of characters, reverses the array, then joins back into a string.</p>
+            </div>
+            
+            <div class="method">
+                <h3>Method 2: For Loop (Backward)</h3>
+                <p>Traditional loop approach for better performance:</p>
+                <code>for (let i = str.length - 1; i >= 0; i--)</code>
+                <p>Iterates through the string from the last character to the first, building the reversed string.</p>
+            </div>
+            
+            <div class="method">
+                <h3>Method 3: Recursion</h3>
+                <p>Elegant functional programming approach:</p>
+                <code>str.charAt(str.length-1) + reverse(str.substring(0, str.length-1))</code>
+                <p>Takes the last character and recursively reverses the rest of the string.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
