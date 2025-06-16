@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .label-output {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px dashed #ced4da;
+            border-radius: 5px;
+            min-height: 20px; /* Para mantener el espacio */
+            text-align: left;
+            word-wrap: break-word;
+            color: #555;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        button.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .feedback-message {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #dc3545;
+            min-height: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invertir Cadena de Texto</h1>
+        <div class="input-group">
+            <input type="text" id="textInput" placeholder="Introduce una cadena de texto aquí">
+            <div id="validationFeedback" class="feedback-message"></div>
+        </div>
+        <label id="reversedTextLabel" class="label-output"></label>
+        <button id="copyButton">Copiar texto invertido</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
