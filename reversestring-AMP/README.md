@@ -4,9 +4,9 @@ Este proyecto es una Prueba de Concepto (PoC) que consiste en una página web si
 
 ##  Funcionalidades
 
--   **Entrada de texto**: Un campo para que el usuario escriba o pegue cualquier cadena de texto.
--   **Inversión de texto**: Un botón "Reverse" que, al hacer clic, muestra la versión invertida del texto.
--   **Copiar al portapapeles**: Un botón "Copy" que aparece con el resultado y permite copiarlo fácilmente.
+-   **Entrada de texto**: Un campo para que el usuario escriba cualquier cadena de texto.
+-   **Inversión en tiempo real**: El texto se invierte automáticamente mientras escribes, sin necesidad de pulsar un botón.
+-   **Copiar al portapapeles**: Un botón "Copy" aparece cuando el texto introducido tiene más de 3 caracteres, permitiendo copiar el resultado fácilmente.
 -   **Diseño responsivo**: La interfaz se adapta a diferentes tamaños de pantalla.
 
 ## Tecnologías Utilizadas

@@ -17,7 +17,7 @@ A continuación se detallan los prompts utilizados en orden cronológico para ll
 > 1.  index.html: contiene el front-end
 > 2.  script.js: contiene la lógica del back-end
 >
-> debes entregar el código para ambos archivos.
+> debes entregar el código para ambos archivos. Adicionalmente, realizar un set pequeño de pruebas para verificar el correcto funcionamiento de la app.
 >
 > debes crear un archivo donde se explique el funcionamiento y como ejecutarlo en local
 >
@@ -29,3 +29,11 @@ A continuación se detallan los prompts utilizados en orden cronológico para ll
 ### Prompt 2: Creación del archivo de prompts
 
 > ahora genera un archivo prompts.md donde indiques el modelo utilizado para la generación del código y ademas genera el listado detallado de prompts utilizados, incluso este
+
+### Prompt 3: Implementación de funcionalidades en tiempo real
+
+> implementa las siguientes funciones: 
+> El botón debe aparecer cuando haya texto suficiente, más de 3 letras
+> Que te de la cadena en tiempo real, que no dependa del botón.
+>
+> actualiza todos los archivos necesarios
