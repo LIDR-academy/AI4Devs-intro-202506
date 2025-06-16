@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir Texto - Herramienta Web</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        textarea, input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1em;
+            resize: vertical;
+            min-height: 50px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #copyButton {
+            background-color: #28a745;
+        }
+
+        #copyButton:hover {
+            background-color: #218838;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invertir Texto</h1>
+
+        <div class="form-group">
+            <label for="inputText">Introduce el texto aquí:</label>
+            <textarea id="inputText" rows="5" placeholder="Escribe el texto que deseas invertir..."></textarea>
+        </div>
+
+        <button id="reverseButton">Revertir Texto</button>
+
+        <div class="form-group" style="margin-top: 30px;">
+            <label for="outputText">Texto invertido:</label>
+            <textarea id="outputText" rows="5" readonly placeholder="El texto invertido aparecerá aquí..."></textarea>
+        </div>
+
+        <button id="copyButton">Copiar Texto Invertido</button>
+        <p id="feedbackMessage" class="feedback"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
