@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+        }
+
+        #controls {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        button {
+            margin: 10px 5px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .help {
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #444;
+            font-size: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="logo.png" alt="Academy Logo" class="logo">
+
+    <h1>Welcome to the String Reverser</h1>
+    <h2>Input your text</h2>
+
+    <input type="text" id="inputString" placeholder="Enter at least 4 characters" oninput="handleInput()">
+
+    <div id="controls" style="display: none;">
+        <button onclick="reverseInput()">Reverse</button>
+        <button onclick="copyResult()">Copy Result</button>
+        <button onclick="shareOnLinkedIn()">Share on LinkedIn</button>
+    </div>
+
+    <div class="output">
+        <p><strong>Live Text:</strong> <span id="liveOutput"></span></p>
+        <p><strong>Reversed String:</strong> <span id="output"></span></p>
+    </div>
+
+    <div class="help">
+        <h3>How to Use</h3>
+        <p>This tool lets you reverse any string you type. Start by entering at least four characters into the input box. As you type, you’ll see a live reversed version below. Once you’ve typed enough, the <strong>Reverse</strong> button will appear, letting you generate the final reversed result, which you can then copy or share on LinkedIn.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
