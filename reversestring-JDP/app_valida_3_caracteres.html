@@ -86,6 +86,15 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             margin-bottom: 25px;
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
         }
 
         .btn-primary:hover {
@@ -190,7 +199,7 @@
             >
         </div>
         
-        <button class="btn btn-primary" id="reverseBtn">
+        <button class="btn btn-primary hidden" id="reverseBtn">
             Reversa
         </button>
         
@@ -263,11 +272,21 @@
             }
         });
 
-        // Event listener para detectar cambios en el input
-        textInput.addEventListener('input', function() {
-            if (this.value.trim() === '') {
+        // Función para mostrar/ocultar el botón de reversa
+        function toggleReverseButton() {
+            const inputText = textInput.value.trim();
+            
+            if (inputText.length >= 3) {
+                reverseBtn.classList.remove('hidden');
+            } else {
+                reverseBtn.classList.add('hidden');
                 hideResult();
             }
+        }
+
+        // Event listener para detectar cambios en el input
+        textInput.addEventListener('input', function() {
+            toggleReverseButton();
         });
 
         // Función para copiar al portapapeles
@@ -312,9 +331,10 @@
             }
         });
 
-        // Enfocar el input al cargar la página
+        // Enfocar el input al cargar la página y configurar estado inicial
         window.addEventListener('load', function() {
             textInput.focus();
+            toggleReverseButton(); // Asegurar que el botón esté oculto inicialmente
         });
     </script>
 </body>

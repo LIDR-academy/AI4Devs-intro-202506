@@ -82,16 +82,7 @@
             letter-spacing: 1px;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            margin-bottom: 25px;
-        }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
 
         .btn-secondary {
             background: linear-gradient(45deg, #43a047, #66bb6a);
@@ -120,14 +111,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        .result-container.show {
             opacity: 1;
             transform: translateY(0);
+            transition: all 0.3s ease;
         }
 
         #resultText {
@@ -136,6 +122,11 @@
             color: #333;
             word-break: break-all;
             line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        #resultText.has-content {
+            color: #2c3e50;
         }
 
         .placeholder {
@@ -190,13 +181,9 @@
             >
         </div>
         
-        <button class="btn btn-primary" id="reverseBtn">
-            Reversa
-        </button>
-        
         <div class="result-container" id="resultContainer">
             <div id="resultText" class="placeholder">
-                El texto revertido aparecerá aquí...
+                Escribe al menos 3 caracteres para ver el texto revertido...
             </div>
         </div>
         
@@ -211,7 +198,6 @@
 
     <script>
         const textInput = document.getElementById('textInput');
-        const reverseBtn = document.getElementById('reverseBtn');
         const resultContainer = document.getElementById('resultContainer');
         const resultText = document.getElementById('resultText');
         const copyBtn = document.getElementById('copyBtn');
@@ -224,50 +210,32 @@
             return str.split('').reverse().join('');
         }
 
-        // Función para mostrar el resultado
-        function showResult(text) {
-            resultText.textContent = text;
-            resultText.classList.remove('placeholder');
-            resultContainer.classList.add('show');
-            copyBtn.disabled = false;
-            reversedText = text;
-        }
-
-        // Función para ocultar el resultado
-        function hideResult() {
-            resultContainer.classList.remove('show');
-            resultText.classList.add('placeholder');
-            resultText.textContent = 'El texto revertido aparecerá aquí...';
-            copyBtn.disabled = true;
-            reversedText = '';
-        }
-
-        // Event listener para el botón de reversa
-        reverseBtn.addEventListener('click', function() {
+        // Función para actualizar el resultado en tiempo real
+        function updateResult() {
             const inputText = textInput.value.trim();
             
-            if (inputText === '') {
-                alert('Por favor, ingresa algún texto para revertir.');
-                textInput.focus();
-                return;
+            if (inputText.length >= 3) {
+                reversedText = reverseString(inputText);
+                resultText.textContent = reversedText;
+                resultText.classList.remove('placeholder');
+                resultText.classList.add('has-content');
+                copyBtn.disabled = false;
+            } else {
+                reversedText = '';
+                if (inputText.length === 0) {
+                    resultText.textContent = 'Escribe al menos 3 caracteres para ver el texto revertido...';
+                } else {
+                    resultText.textContent = `Necesitas ${3 - inputText.length} caractere${3 - inputText.length > 1 ? 's' : ''} más...`;
+                }
+                resultText.classList.add('placeholder');
+                resultText.classList.remove('has-content');
+                copyBtn.disabled = true;
             }
+        }
 
-            const reversed = reverseString(inputText);
-            showResult(reversed);
-        });
-
-        // Event listener para presionar Enter en el input
-        textInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                reverseBtn.click();
-            }
-        });
-
-        // Event listener para detectar cambios en el input
+        // Event listener para detectar cambios en el input en tiempo real
         textInput.addEventListener('input', function() {
-            if (this.value.trim() === '') {
-                hideResult();
-            }
+            updateResult();
         });
 
         // Función para copiar al portapapeles
@@ -312,9 +280,10 @@
             }
         });
 
-        // Enfocar el input al cargar la página
+        // Enfocar el input al cargar la página y configurar estado inicial
         window.addEventListener('load', function() {
             textInput.focus();
+            updateResult(); // Configurar estado inicial
         });
     </script>
 </body>
