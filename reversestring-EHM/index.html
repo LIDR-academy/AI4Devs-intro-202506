@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+</head>
+<body>
+    <h1>Reverse String Tool</h1>
+
+    <!-- Primer conjunto -->
+    <h2>Manual Reverse</h2>
+    <input type="text" id="inputText" placeholder="Type something..." />
+    <button onclick="reverseText()">Reverse</button>
+    <p id="output"></p>
+
+    <hr>
+
+    <!-- Segundo conjunto -->
+    <h2>Button Enabled with 3+ Characters</h2>
+    <input type="text" id="inputText2" placeholder="Min 3 characters..." oninput="validateInput()" />
+    <button id="reverseBtn2" onclick="reverseText2()" disabled>Reverse (min 3 chars)</button>
+    <p id="output2"></p>
+
+    <hr>
+
+    <!-- Tercer conjunto -->
+    <h2>Live Reverse as You Type</h2>
+    <input type="text" id="inputText3" placeholder="Live reverse..." oninput="liveReverse()" />
+    <p id="output3"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
