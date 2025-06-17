@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 40px;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .input-box {
+            width: 90%;
+            max-width: 900px;
+            font-size: 2rem;
+            padding: 12px 18px;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            border: 1px solid #cfd8dc;
+        }
+        .reverse-btn {
+            background: #007aff;
+            color: #fff;
+            font-size: 2rem;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .result {
+            font-size: 2rem;
+            margin: 32px 0 24px 0;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        .copy-btn {
+            background: #6c757d;
+            color: #fff;
+            font-size: 2rem;
+            padding: 10px 32px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reverse String</h1>
+    <input id="inputText" class="input-box" type="text" placeholder="Hello, write your text here">
+    <br>
+    <button id="reverseBtn" class="reverse-btn" style="display:none;">Reverse <span>🔄</span></button>
+    <div id="result" class="result"></div>
+    <button id="copyBtn" class="copy-btn">Copy <span>📋</span></button>
+    <script src="script.js"></script>
+</body>
+</html> 
