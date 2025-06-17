@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reverse String by Pavel Mollinedo</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 600px;
+      margin-top: 80px;
+      text-align: center;
+    }
+    .title-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0d6efd;
+    }
+    .title-line span {
+      white-space: nowrap;
+    }
+    .main-title {
+      margin-right: 0.3em;
+    }
+    #output {
+      font-size: 1.5rem;
+      font-weight: 500;
+      word-wrap: break-word;
+    }
+    #hiddenTextarea {
+      position: absolute;
+      left: -9999px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="title-line mb-4">
+      <span class="main-title">Reverse String</span>
+      <span class="author">by Pavel Mollinedo</span>
+    </div>
+
+    <div class="mb-3">
+      <input type="text" class="form-control form-control-lg" id="inputText" placeholder="Ingresa una cadena de texto" oninput="handleInput()">
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4">
+      <button class="btn btn-secondary" onclick="clearFields()">Limpiar</button>
+    </div>
+
+    <div id="outputContainer" class="mb-3" style="display: none;">
+      <div id="output" class="alert alert-success"></div>
+      <button class="btn btn-outline-success btn-sm" onclick="copyToClipboard()">Copiar al portapapeles</button>
+    </div>
+  </div>
+
+  <!-- Fallback para Safari -->
+  <textarea id="hiddenTextarea" readonly></textarea>
+
+  <script>
+    function handleInput() {
+      const input = document.getElementById("inputText").value;
+      const reversed = input.split("").reverse().join("");
+      const output = document.getElementById("output");
+      const outputContainer = document.getElementById("outputContainer");
+
+      if (input.length > 0) {
+        output.textContent = reversed;
+        outputContainer.style.display = "block";
+      } else {
+        output.textContent = "";
+        outputContainer.style.display = "none";
+      }
+    }
+
+    function clearFields() {
+      document.getElementById("inputText").value = "";
+      document.getElementById("output").textContent = "";
+      document.getElementById("outputContainer").style.display = "none";
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById("output").textContent;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+          .then(() => alert("Texto copiado al portapapeles"))
+          .catch(err => alert("Error al copiar: " + err));
+      } else {
+        const textarea = document.getElementById("hiddenTextarea");
+        textarea.value = text;
+        textarea.select();
+        try {
+          const success = document.execCommand('copy');
+          alert(success ? "Texto copiado al portapapeles" : "Error al copiar");
+        } catch (err) {
+          alert("Error al copiar: " + err);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
