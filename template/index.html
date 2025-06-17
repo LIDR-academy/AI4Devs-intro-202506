@@ -3,9 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <meta name="description" content="Reverse any string instantly with this simple web tool">
+    <title>String Reverser | AI4Devs</title>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #5855eb;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--background) 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            outline: none;
+        }
+
+        .text-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgb(99 102 241 / 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .button-group.single-button {
+            justify-content: center;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 2px dashed var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-section.has-result {
+            background: #f0f9ff;
+            border-color: var(--primary-color);
+            border-style: solid;
+        }
+
+        .result-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            word-break: break-all;
+            margin-bottom: 1rem;
+            min-height: 2rem;
+        }
+
+        .result-placeholder {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .copy-feedback {
+            color: var(--success-color);
+            font-size: 0.875rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-feedback.show {
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-<script src="script.js"></script>
+    <div class="container">
+        <header class="header">
+            <h1>String Reverser</h1>
+            <p>Experience real-time text reversal as you type!</p>
+        </header>
+
+        <main class="card">
+            <div class="input-group">
+                <label for="inputText" class="input-label">Enter your text:</label>
+                <input 
+                    type="text" 
+                    id="inputText" 
+                    class="text-input" 
+                    placeholder="Type something amazing..."
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+            </div>
+
+            <div class="button-group">
+                <button id="reverseBtn" class="btn btn-primary" style="display: none;">
+                    <span>🔄</span> Manual Reverse
+                </button>
+                <button id="copyBtn" class="btn btn-secondary" disabled>
+                    <span>📋</span> Copy Result
+                </button>
+            </div>
+
+            <section class="result-section" id="resultSection">
+                <div id="resultText" class="result-text result-placeholder">
+                    Your reversed text will appear here...
+                </div>
+                <div id="copyFeedback" class="copy-feedback">
+                    Copied to clipboard! ✓
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Built with ❤️ for AI4Devs certification</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
