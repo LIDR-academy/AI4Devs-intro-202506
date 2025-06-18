@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card mt-5 shadow">
+                    <div class="card-body p-4">
+                        <h1 class="card-title text-center mb-3">Reverse String</h1>
+                        <p class="text-center text-muted mb-4">Invierte el orden de cualquier cadena de texto de manera fácil y rápida</p>
+                        
+                        <div class="mb-4">
+                            <input type="text" class="form-control form-control-lg" id="textInput" placeholder="Ingresa el texto a invertir">
+                        </div>
+                        
+                        <div id="result" class="mt-4" style="display: none;">
+                            <div class="alert alert-info">
+                                <h5 class="mb-2">Texto Invertido:</h5>
+                                <p id="reversedText" class="mb-0 fs-5 fw-bold"></p>
+                            </div>
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-outline-secondary" id="copyBtn">
+                                    Copiar Resultado
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
