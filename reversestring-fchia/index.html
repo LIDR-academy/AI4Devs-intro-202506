@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inversor de Oraciones</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+  <div class="container" x-data="textReverser" x-effect="invertirTexto()">
+    <h1>🔁 Inversor de Oraciones</h1>
+
+    <label for="input">Escribe una oración:</label>
+    <input id="input" type="text" x-model="original" placeholder="Ej: abc def">
+
+    <button @click="invertirTexto">Invertir</button>
+
+    <label for="output">Resultado:</label>
+    <input id="output" type="text" :value="invertida" readonly>
+  </div>
+</body>
+</html>
