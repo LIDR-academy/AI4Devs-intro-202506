@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversor de Cadenas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1em;
+        }
+        
+        #inputText {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        #inputText:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .output-group {
+            margin-top: 25px;
+        }
+        
+        #reversedText {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 500;
+            min-height: 25px;
+            word-break: break-all;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .char-count {
+            font-size: 12px;
+            color: #888;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .example strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>?? Inversor de Cadenas</h1>
+        
+        <div class="input-group">
+            <label for="inputText">Ingresa tu texto (mínimo 3 caracteres):</label>
+            <input 
+                type="text" 
+                id="inputText" 
+                placeholder="Ejemplo: AI4Devs"
+                autocomplete="off"
+            >
+            <div class="char-count" id="charCount">0 caracteres</div>
+        </div>
+        
+        <div class="output-group">
+            <label>Texto invertido:</label>
+            <div id="reversedText">Ingresa al menos 3 caracteres para ver el resultado...</div>
+        </div>
+        
+        <div class="example">
+            <strong>Ejemplo:</strong> Si ingresas "AI4Devs", obtienes "sveD4IA"
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
