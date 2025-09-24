@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reverse String — AI4Devs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg:#0f172a;
+        --card:#111827;
+        --muted:#94a3b8;
+        --text:#e5e7eb;
+        --accent:#22d3ee;
+        --ring: rgba(34,211,238,.35);
+        --success:#34d399;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
+        color:var(--text);
+        background: radial-gradient(1200px 800px at 80% -10%, rgba(34,211,238,.08), transparent 40%),
+                    radial-gradient(1000px 700px at -10% 100%, rgba(52,211,153,.08), transparent 40%),
+                    var(--bg);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:24px;
+      }
+      .card{
+        width:100%;
+        max-width:680px;
+        background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%) border-box,
+                   linear-gradient(180deg, rgba(255,255,255,.08), transparent 60%) padding-box;
+        background-color:rgba(17,24,39,0.85);
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(148,163,184,.18);
+        border-radius:24px;
+        box-shadow: 0 20px 80px rgba(2,6,23,.35);
+        padding:28px;
+        transition: transform .25s ease;
+      }
+      .card:hover{ transform: translateY(-2px) }
+      h1{
+        margin:0 0 8px;
+        font-size: clamp(20px, 2.4vw, 28px);
+        letter-spacing:.2px;
+      }
+      p.sub{
+        margin:0 0 20px;
+        color:var(--muted);
+        font-size:14px;
+      }
+      label{
+        display:block;
+        font-size:13px;
+        color:var(--muted);
+        margin: 12px 0 8px;
+      }
+      .row{
+        position:relative;
+        display:flex;
+        gap:12px;
+        align-items:stretch;
+      }
+      input[type="text"]{
+        flex:1;
+        background:#0b1220;
+        color:var(--text);
+        border:1px solid rgba(148,163,184,.25);
+        border-radius:14px;
+        padding:14px 14px;
+        outline:none;
+        font-size:16px;
+        transition:border-color .2s, box-shadow .2s, transform .06s ease;
+      }
+      input[type="text"]:focus{
+        border-color: var(--accent);
+        box-shadow: 0 0 0 6px var(--ring);
+      }
+      button{
+        display:none; /* se muestra vía JS al tener >3 caracteres */
+        background: linear-gradient(180deg, var(--accent), #06b6d4);
+        color:#06202a;
+        font-weight:700;
+        border:none;
+        border-radius:14px;
+        padding:0 16px;
+        min-width:120px;
+        cursor:pointer;
+        transition:filter .2s, transform .06s ease;
+      }
+      button:active{ transform: translateY(1px) scale(.99) }
+      button:hover{ filter: brightness(1.08) }
+      .hint{
+        margin-top:6px;
+        font-size:12px;
+        color:var(--muted);
+      }
+      .result{
+        margin-top:18px;
+        padding:16px;
+        border:1px dashed rgba(148,163,184,.35);
+        border-radius:14px;
+        background:rgba(8,13,23,.55);
+        min-height:54px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+      }
+      .result-text{
+        font-size: clamp(16px, 1.8vw, 18px);
+        word-break: break-word;
+        letter-spacing:.2px;
+      }
+      .pill{
+        font-size:12px;
+        color:#062b1b;
+        background: linear-gradient(180deg, var(--success), #10b981);
+        border-radius:999px;
+        padding:6px 10px;
+        font-weight:700;
+        opacity:0;
+        transform: translateY(6px);
+        transition: opacity .25s ease, transform .25s ease;
+        white-space:nowrap;
+      }
+      .pill.show{ opacity:1; transform: translateY(0) }
+      footer{
+        margin-top:18px;
+        color:var(--muted);
+        font-size:12px;
+        display:flex;
+        justify-content:space-between;
+        gap:12px;
+        flex-wrap:wrap;
+      }
+      .kbd{
+        border:1px solid rgba(148,163,184,.35);
+        padding:2px 6px;
+        border-radius:6px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size:12px;
+        background: rgba(2,6,23,.4);
+        color: var(--text);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main" aria-labelledby="title">
+      <h1 id="title">Reverse String <span aria-hidden="true">🔁</span></h1>
+      <p class="sub">Escribe un texto y obtén su versión invertida en tiempo real. Diseño minimalista, accesible y amigable.</p>
+
+      <label for="textInput">Cadena a invertir</label>
+      <div class="row">
+        <input id="textInput" type="text" placeholder="Escribe algo aquí..." autocomplete="off" />
+        <button id="reverseBtn" type="button" aria-label="Invertir texto">Invertir</button>
+      </div>
+      <div class="hint">El botón aparece cuando hay más de <strong>3</strong> caracteres. Resultado en vivo debajo.</div>
+
+      <section class="result" aria-live="polite">
+        <div id="resultText" class="result-text" data-empty="El resultado aparecerá aquí…">El resultado aparecerá aquí…</div>
+        <span id="livePill" class="pill" aria-hidden="true">En vivo</span>
+      </section>
+
+      <footer>
+        
+        <span><span class="kbd">Enter</span> invierte, <span class="kbd">Esc</span> limpia</span>
+      </footer>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
