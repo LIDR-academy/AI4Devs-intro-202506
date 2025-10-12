@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversor de Cadenas de Texto</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .input-group {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transform: scale(1.02);
+        }
+        
+        button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00d2d3;
+            margin-top: 20px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            word-break: break-all;
+        }
+        
+        .example {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .example strong {
+            color: #00d2d3;
+        }
+        
+        .checkbox-group {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Inversor de Cadenas</h1>
+        
+        <div class="input-group">
+            <label for="inputString">Introduce tu texto:</label>
+            <input type="text" id="inputString" placeholder="Ejemplo: AI4Devs" maxlength="100">
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="manualMode" checked>
+            <label for="manualMode">Modo manual (mostrar botón)</label>
+        </div>
+        
+        <button onclick="reverseString()">Invertir Texto</button>
+        <button id="clearButton" onclick="clearText()" style="background: linear-gradient(45deg, #6c5ce7, #a29bfe); display: none;">Borrar Texto</button>
+        
+        <div class="result" id="result">
+            El resultado aparecerá aquí...
+        </div>
+        
+        <div class="example">
+            <strong>Ejemplo:</strong> Si introduces "AI4Devs", obtendrás "sveD4IA"
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Función para controlar la visibilidad del botón y conversión automática
+        function handleInputChange() {
+            const input = document.getElementById('inputString');
+            const button = document.querySelector('button');
+            const clearButton = document.getElementById('clearButton');
+            const manualMode = document.getElementById('manualMode');
+            const result = document.getElementById('result');
+            
+            // Mostrar/ocultar botón de borrar según si hay texto
+            if (input.value.length > 0) {
+                clearButton.style.display = 'block';
+            } else {
+                clearButton.style.display = 'none';
+                result.textContent = 'El resultado aparecerá aquí...';
+                result.style.color = 'white';
+            }
+            
+            // Solo procesar si hay al menos 6 caracteres
+            if (input.value.length >= 6) {
+                if (manualMode.checked) {
+                    // Modo manual: mostrar botón de invertir
+                    button.style.display = 'block';
+                } else {
+                    // Modo automático: convertir inmediatamente
+                    button.style.display = 'none';
+                    reverseString();
+                }
+            } else {
+                button.style.display = 'none';
+            }
+        }
+        
+        // Función para manejar el cambio del checkbox
+        function handleModeChange() {
+            const input = document.getElementById('inputString');
+            const button = document.querySelector('button');
+            const clearButton = document.getElementById('clearButton');
+            const manualMode = document.getElementById('manualMode');
+            
+            // Mostrar/ocultar botón de borrar según si hay texto
+            if (input.value.length > 0) {
+                clearButton.style.display = 'block';
+            } else {
+                clearButton.style.display = 'none';
+            }
+            
+            if (manualMode.checked) {
+                // Cambiar a modo manual
+                if (input.value.length >= 6) {
+                    button.style.display = 'block';
+                }
+            } else {
+                // Cambiar a modo automático
+                button.style.display = 'none';
+                if (input.value.length >= 6) {
+                    reverseString();
+                }
+            }
+        }
+        
+        // Agregar event listeners cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('inputString');
+            const manualMode = document.getElementById('manualMode');
+            
+            input.addEventListener('input', handleInputChange);
+            manualMode.addEventListener('change', handleModeChange);
+        });
+    </script>
+</body>
+</html>
