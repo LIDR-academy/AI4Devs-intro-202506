@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 30px 0;
+            text-align: left;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #007AFF;
+        }
+        
+        .reverse-btn {
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .reverse-btn:hover {
+            background-color: #0056CC;
+        }
+        
+        .reverse-btn.show {
+            display: flex;
+        }
+        
+        .reverse-icon {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .reverse-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border: 2px solid #007AFF;
+            border-top: none;
+            border-right: none;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        
+        .output-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 12px;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+        
+        .copy-btn {
+            background-color: #6C757D;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #5A6268;
+        }
+        
+        .copy-btn.show {
+            display: flex;
+        }
+        
+        .copy-icon {
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .copy-icon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 6px;
+            height: 6px;
+            border: 1px solid #6C757D;
+            border-radius: 1px;
+        }
+        
+        .copy-icon::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 6px;
+            height: 6px;
+            border: 1px solid #6C757D;
+            border-radius: 1px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reverse String</h1>
+        
+        <input type="text" id="inputString" class="input-field" placeholder="Hello, welcome to AI4Devs">
+        
+        <button id="reverseBtn" class="reverse-btn">
+            <span class="reverse-icon"></span>
+            Reverse
+        </button>
+        
+        <div class="output-text" id="outputString"></div>
+        
+        <button id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+            <span class="copy-icon"></span>
+            Copy
+        </button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
