@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reverse String</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&display=swap">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      color: #1a1a1a;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1.25rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    button {
+      display: none;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    #reversedText {
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reverse String</h1>
+  <input type="text" id="inputText" placeholder="Hello, welcome to AI4Devs" />
+  <button id="reverseBtn">Reverse 🔄</button>
+  <div id="reversedText"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
