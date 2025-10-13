@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverse String</title>
+  <style>
+    :root {
+      --min-len: 3;
+      --fg: #0f172a;
+      --muted: #64748b;
+      --accent: #2563eb;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --error: #dc2626;
+      --ok: #16a34a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 2rem;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg); background: var(--bg);
+      line-height: 1.5;
+    }
+    header { max-width: 900px; margin: 0 auto 1.5rem; }
+    h1 { margin: 0 0 .25rem; font-size: clamp(1.6rem, 2.2vw + 1rem, 2.2rem); }
+    p.lead { margin: 0; color: var(--muted); }
+    main { max-width: 900px; margin: 0 auto; display: grid; gap: 1rem; }
+    section.card {
+      background: var(--card); border-radius: 18px; padding: 1.25rem;
+      box-shadow: 0 6px 16px rgba(15,23,42,.08);
+      border: 1px solid #e5e7eb;
+    }
+    section.card h2 { margin-top: 0; font-size: 1.15rem; }
+    .row { display: grid; grid-template-columns: 1fr auto; gap: .75rem; align-items: center; }
+    .row + .row { margin-top: .5rem; }
+    label { font-weight: 600; }
+    input[type="text"] {
+      width: 100%; padding: .65rem .75rem; border-radius: 10px;
+      border: 1px solid #cbd5e1; outline: none;
+    }
+    input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+    button {
+      padding: .65rem .9rem; border-radius: 10px; border: 1px solid transparent;
+      background: var(--accent); color: #fff; font-weight: 600; cursor: pointer;
+      transition: transform .02s ease-in-out, filter .15s ease-in-out, opacity .2s;
+    }
+    button[disabled] { opacity: .45; cursor: not-allowed; }
+    button:active { transform: translateY(1px); }
+    .output {
+      display: inline-flex; gap: .4rem; align-items: baseline; flex-wrap: wrap;
+      margin-left: .25rem;
+    }
+    .title { font-weight: 700; }
+    .result {
+      min-width: 3ch; padding: .35rem .5rem; border-radius: 8px; background: #f1f5f9;
+      border: 1px dashed #cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .hint { color: var(--muted); font-size: .95rem; }
+    .status { font-size: .95rem; }
+    .status.ok { color: var(--ok); }
+    .status.err { color: var(--error); }
+    footer { max-width: 900px; margin: 1.25rem auto 0; color: var(--muted); font-size: .9rem; }
+    code { background: #f1f5f9; padding: .15rem .35rem; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Inversor de cadenas — tres aproximaciones</h1>
+    <p class="lead">Longitud mínima: <strong>3</strong> caracteres. Ejemplo: <code>AI4Devs</code> → <code>sveD4IA</code>.</p>
+  </header>
+
+  <main>
+    <!-- Aproximación 1 -->
+    <section class="card" id="aprox1" aria-labelledby="aprox1-title">
+      <h2 id="aprox1-title">Aproximación 1 — Validación al pulsar</h2>
+      <div class="row">
+        <label for="in1">Texto:</label>
+        <input id="in1" type="text" placeholder="Escribe aquí…" autocomplete="off" />
+        <button id="btn1" type="button">Invertir</button>
+      </div>
+      <div class="row">
+        <span class="output">
+          <span class="title">Texto invertido:</span>
+          <span id="out1" class="result" aria-live="polite"></span>
+        </span>
+        <span id="msg1" class="status" role="status" aria-live="polite"></span>
+      </div>
+      <p class="hint">El botón comprueba la longitud al hacer clic. Si no llega a 3, informa del motivo.</p>
+    </section>
+
+    <!-- Aproximación 2 -->
+    <section class="card" id="aprox2" aria-labelledby="aprox2-title">
+      <h2 id="aprox2-title">Aproximación 2 — Botón habilitado por longitud</h2>
+      <div class="row">
+        <label for="in2">Texto:</label>
+        <input id="in2" type="text" placeholder="Escribe aquí…" autocomplete="off" />
+        <button id="btn2" type="button" disabled>Invertir</button>
+      </div>
+      <div class="row">
+        <span class="output">
+          <span class="title">Texto invertido:</span>
+          <span id="out2" class="result" aria-live="polite"></span>
+        </span>
+        <span id="msg2" class="status" role="status" aria-live="polite"></span>
+      </div>
+      <p class="hint">El botón solo se activa cuando hay ≥ 3 caracteres.</p>
+    </section>
+
+    <!-- Aproximación 3 -->
+    <section class="card" id="aprox3" aria-labelledby="aprox3-title">
+      <h2 id="aprox3-title">Aproximación 3 — Inversión en tiempo real</h2>
+      <div class="row">
+        <label for="in3">Texto:</label>
+        <input id="in3" type="text" placeholder="Escribe aquí…" autocomplete="off" />
+      </div>
+      <div class="row">
+        <span class="output">
+          <span class="title">Texto invertido:</span>
+          <span id="out3" class="result" aria-live="polite"></span>
+        </span>
+        <span id="msg3" class="status" role="status" aria-live="polite"></span>
+      </div>
+      <p class="hint">A partir de 3 caracteres, el resultado se actualiza con cada pulsación.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Implementación accesible: mensajes con <em>aria-live</em>, control de estados y validaciones consistentes en las tres variantes.</p>
+  </footer>
+
+  <!-- Mantener la referencia a script.js como en el fichero base -->
+  <script src="script.js" defer></script>
+</body>
+</html>
