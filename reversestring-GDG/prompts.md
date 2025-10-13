@@ -3,7 +3,7 @@ chatbot: Perplexity AI
 prompt: Actua como un desarrollador web que sabe html y javascript, debes crear una aplicacion web cuyo frontend debe ser creado en html y la logica de negocio debe estar en javascript, la aplicacion debera poder mostrar una cadena de texto ingresada en una caja de texto de forma invertida asi:
 
 si el usuario ingresa "Hola" debe mostrar como resultado "aloH"
-si el usuaioo ingresa "AI4Devs" debe mostrar como resultado "sveD4AI"
+si el usuario ingresa "AI4Devs" debe mostrar como resultado "sveD4AI"
 
 la logica de negocio debe estar en un archivo llamado script.js
 la ui debe estar creada en un archivo index.html que referenciara al archivo script.js anteriormente creado.
