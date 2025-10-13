@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reversor de Texto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>🔁 Reversor de Texto</h1>
+
+    <form id="reverseForm">
+      <label for="inputString">Escribe un texto para invertirlo:</label>
+      <input type="text" id="inputString" placeholder="Ejemplo: Hola mundo" required />
+      <button type="button" id="reverseButton" class="hidden">Revertir texto</button>
+    </form>
+
+    <div id="resultContainer" class="hidden">
+      <h2>Texto invertido:</h2>
+      <p id="resultText"></p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
