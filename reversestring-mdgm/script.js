@@ -1,20 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('reverseForm');
   const input = document.getElementById('inputString');
   const resultContainer = document.getElementById('resultContainer');
   const resultText = document.getElementById('resultText');
+  const reverseButton = document.getElementById('reverseButton');
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+  // Función para invertir texto
+  const reverseString = (str) => str.split('').reverse().join('');
 
-    const original = input.value.trim();
-    if (!original) {
-      resultContainer.classList.add('hidden');
-      return;
+  // Escuchar entrada en tiempo real
+  input.addEventListener('input', () => {
+    const text = input.value.trim();
+
+    // Mostrar/ocultar el botón según la longitud del texto
+    if (text.length > 3) {
+      reverseButton.classList.remove('hidden');
+    } else {
+      reverseButton.classList.add('hidden');
     }
 
-    const reversed = original.split('').reverse().join('');
-    resultText.textContent = reversed;
+    // Actualizar el texto invertido en tiempo real
+    if (text.length > 0) {
+      resultText.textContent = reverseString(text);
+      resultContainer.classList.remove('hidden');
+    } else {
+      resultContainer.classList.add('hidden');
+    }
+  });
+
+  // También permitir que el usuario pulse el botón si desea "refrescar" manualmente
+  reverseButton.addEventListener('click', () => {
+    const text = input.value.trim();
+    resultText.textContent = reverseString(text);
     resultContainer.classList.remove('hidden');
   });
 });
