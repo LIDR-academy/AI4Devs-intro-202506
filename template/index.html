@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverse String</title>
+  <script src="script.js" defer></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+    input { width: 100%; max-width: 400px; padding: 0.5rem; border-radius: 5px; border: 1px solid #888; }
+    button { padding: 0.5rem 1rem; border-radius: 5px; border: 1px solid #333; background: transparent; cursor: pointer; margin-top: 1rem; }
+    #btn-reverse { display: none; } /* hidden by default */
+    .error { color: #b00020; margin-top: 0.5rem; }
+    .output { margin-top: 1rem; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; min-height: 2rem; }
+  </style>
 </head>
 <body>
-<script src="script.js"></script>
+  <h1>Reverse String (Real Time)</h1>
+
+  <label for="text-input">Text to reverse:</label>
+  <input id="text-input" type="text" autocomplete="off" spellcheck="false" />
+
+  <button id="btn-reverse" type="button">Reverse</button>
+  <div id="status" class="error" role="status" aria-live="polite"></div>
+
+  <p><strong>Result:</strong></p>
+  <div id="output" class="output" aria-live="polite"></div>
 </body>
 </html>
