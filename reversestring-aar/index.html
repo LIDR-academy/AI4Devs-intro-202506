@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invertir Texto</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 24px;
+        text-align: center;
+        font-size: 28px;
+      }
+
+      .input-group {
+        margin-bottom: 24px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 500;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .result {
+        background: #f8f9fa;
+        padding: 16px;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+      }
+
+      .result-text {
+        color: #333;
+        font-size: 18px;
+        word-break: break-word;
+      }
+
+      .result-text.empty {
+        color: #999;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔄 Invertir Texto</h1>
+
+      <div class="input-group">
+        <label for="textInput">Ingresa tu texto:</label>
+        <input
+          type="text"
+          id="textInput"
+          placeholder="Escribe algo aquí..."
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="result">
+        <p class="result-text empty" id="resultText">
+          El texto invertido aparecerá aquí
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
