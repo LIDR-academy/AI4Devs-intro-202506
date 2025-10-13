@@ -14,11 +14,11 @@ Good luck!
 
 The content of this repository is part of the AI4Devs program by LIDR.co. You can find all the information on the official website [https://lidr.co/ia-devs](https://www.lidr.co/ia-devs)
 
-# Reverse string ES
+## Reverse string ES
 
-Crea una **página web con lógica en javascript que invierta el orden de una cadena de texto**. 
+Crea una **página web con lógica en javascript que invierta el orden de una cadena de texto**.
 
-Ejemplo: si introduzco `AI4Devs` devuelve `sveD4IA`. 
+Ejemplo: si introduzco `AI4Devs` devuelve `sveD4IA`.
 
 Hazlo apoyado en el seed `index.html` y `script.js` que proporcionamos dentro de la carpeta template
 
