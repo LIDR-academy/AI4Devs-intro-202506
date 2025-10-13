@@ -80,3 +80,4 @@ La solución cumple completamente con los requisitos del ejercicio y proporciona
 - **Validación**: Manejo de strings vacíos y entrada de usuario
 - **UX**: Interfaz intuitiva con feedback visual inmediato
 - **Responsive**: Diseño adaptable a diferentes tamaños de pantalla
+
