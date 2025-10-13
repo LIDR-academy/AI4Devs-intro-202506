@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverse String</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 40px;
+      background-color: #fff;
+      color: #111;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    input[type="text"] {
+      width: 700px;
+      padding: 15px 20px;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4285f4;
+      box-shadow: 0 0 4px rgba(66,133,244,0.4);
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #reverseBtn {
+      background-color: #1a73e8;
+      color: #fff;
+      margin-bottom: 25px;
+    }
+
+    #reverseBtn:hover {
+      background-color: #155fc0;
+    }
+
+    #copyBtn {
+      background-color: #5f6368;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    #copyBtn:hover {
+      background-color: #444;
+    }
+
+    #output {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reverse String</h1>
+  <input type="text" id="inputText" placeholder="Hello, welcome to AI4Devs">
+  <br>
+  <button id="reverseBtn"><i class="fa-solid fa-rotate"></i> Reverse</button>
+  <p id="output"></p>
+  <button id="copyBtn"><i class="fa-regular fa-clipboard"></i> Copy</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
