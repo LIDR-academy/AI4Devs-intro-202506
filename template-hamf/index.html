@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Reverser</h1>
+
+        <div class="input-section">
+            <label for="inputText">Enter your text:</label>
+            <textarea id="inputText" placeholder="Type something here..." rows="4"></textarea>
+        </div>
+
+        <div class="output-section">
+            <label for="outputText">Reversed text:</label>
+            <textarea id="outputText" readonly rows="4"></textarea>
+        </div>
+
+        <button id="copyBtn" class="btn btn-secondary" disabled>Copy to Clipboard</button>
+
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
