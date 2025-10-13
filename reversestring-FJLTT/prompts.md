@@ -23,7 +23,7 @@ Resultado: el resultado de la aplicación devuélvemelo con la siguiente estruct
 - script.js. Aquí me añadirás el código en javascript de la aplicación.
 
 - prompts.md. Aquí me documentarás el chatbot utilizado y los prompts que te haya pedido para llegar a la solución.
-
+ 
 ## Respuesta generada por ChatGPT
 - Se creó una página HTML con un campo de entrada, botón y zona de resultado.
 - El archivo `script.js` incluye una función para invertir el string y otra para interactuar con el DOM.

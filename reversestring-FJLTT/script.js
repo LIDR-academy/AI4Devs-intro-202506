@@ -9,3 +9,4 @@ function reverseInput() {
     const reversed = reverseString(input);
     document.getElementById('result').textContent = `Reversed string: ${reversed}`;
 }
+ 
