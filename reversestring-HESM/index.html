@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #111827;
+        --muted: #1f2937;
+        --border: #374151;
+        --text: #e5e7eb;
+        --text-dim: #9ca3af;
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --secondary: #6b7280;
+        --secondary-hover: #4b5563;
+        --success: #22c55e;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+        background: radial-gradient(1200px 600px at 50% -10%, #1f2937 0%, var(--bg) 60%);
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .card {
+        width: 100%;
+        max-width: 720px;
+        background: linear-gradient(180deg, var(--card), #0b1220);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        padding: 28px;
+      }
+      .title { margin: 0 0 16px 0; font-size: 2rem; letter-spacing: .2px; }
+      .subtitle { margin: 0 0 24px 0; color: var(--text-dim); font-size: .95rem; }
+
+      .field { display: grid; gap: 8px; margin-bottom: 16px; }
+      label { color: var(--text-dim); font-size: .9rem; }
+      input[type="text"] {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 1.05rem;
+        color: var(--text);
+        background: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        outline: none;
+        transition: border-color .15s ease, box-shadow .15s ease;
+      }
+      input[type="text"]::placeholder { color: #6b7280; }
+      input[type="text"]:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .25);
+      }
+
+      .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+      .btn {
+        padding: 12px 18px;
+        font-size: 1rem;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform .05s ease, background-color .15s ease, border-color .15s ease, opacity .15s ease;
+        user-select: none;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn-primary { background: var(--primary); color: white; }
+      .btn-primary:hover { background: var(--primary-hover); }
+      .btn-secondary { background: var(--secondary); color: white; }
+      .btn-secondary:hover { background: var(--secondary-hover); }
+      .btn[disabled] { opacity: .5; cursor: not-allowed; }
+      .hidden { display: none !important; }
+
+      .result-wrap {
+        margin-top: 18px;
+        background: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 16px;
+        min-height: 64px;
+      }
+      .result-label { color: var(--text-dim); font-size: .85rem; margin-bottom: 6px; }
+      .result {
+        font-size: 1.15rem;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      }
+      .status { margin-top: 10px; font-size: .9rem; color: var(--text-dim); min-height: 20px; }
+      .status.ok { color: var(--success); }
+      .hint { margin-top: 6px; font-size: .85rem; color: var(--text-dim); }
+
+      @media (max-width: 420px) {
+        .title { font-size: 1.6rem; }
+        .btn { width: 100%; }
+      }
+    </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <h1 class="title" id="title">Reverse String</h1>
+    <p class="subtitle">Type text below. The result updates in real-time. The <strong>Reverse</strong> button appears only when you type more than 3 characters.</p>
+
+    <div class="field">
+      <label for="inputText">Your text</label>
+      <input
+        type="text"
+        id="inputText"
+        name="inputText"
+        placeholder="Hello, welcome to AI4Devs"
+        autocomplete="off"
+        aria-describedby="hint"
+      />
+    </div>
+
+    <div class="actions">
+      <!-- Hidden by default; shown when input length > 3 -->
+      <button class="btn btn-primary hidden" id="reverseBtn" type="button">Reverse 🔄</button>
+      <button class="btn btn-secondary" id="copyBtn" type="button" disabled>Copy 📋</button>
+    </div>
+
+    <div class="result-wrap" aria-live="polite" aria-atomic="true">
+      <div class="result-label">Result</div>
+      <div class="result" id="result"></div>
+    </div>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div id="hint" class="hint">Tip: Press <kbd>Enter</kbd> to reverse. Button appears when length &gt; 3.</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
