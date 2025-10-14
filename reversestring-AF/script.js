@@ -11,29 +11,36 @@ function reverseText(str) {
  * Función principal que se ejecuta al hacer click en el botón Reverse
  */
 function reverseString() {
-    // Obtener el texto del input
     const inputElement = document.getElementById('inputText');
-    const inputText = inputElement.value.trim();
-    
-    // Obtener el elemento donde mostrar el resultado
+    processInput(inputElement.value);
+}
+
+/**
+ * Procesa el input y actualiza la UI en tiempo real
+ * @param {string} inputText - El texto del input
+ */
+function processInput(inputText) {
+    const trimmedText = inputText.trim();
     const resultElement = document.getElementById('resultText');
     const copyBtn = document.getElementById('copyBtn');
+    const reverseBtn = document.getElementById('reverseBtn');
     
-    // Validar que hay texto para invertir
-    if (inputText === '') {
-        resultElement.textContent = '';
-        copyBtn.disabled = true;
-        return;
+    // Mostrar/ocultar botón según la cantidad de caracteres
+    if (trimmedText.length > 3) {
+        reverseBtn.classList.add('visible');
+    } else {
+        reverseBtn.classList.remove('visible');
     }
     
-    // Invertir el texto
-    const reversedText = reverseText(inputText);
-    
-    // Mostrar el resultado
-    resultElement.textContent = reversedText;
-    
-    // Habilitar el botón de copiar
-    copyBtn.disabled = false;
+    // Invertir texto en tiempo real si hay contenido
+    if (trimmedText.length > 0) {
+        const reversedText = reverseText(trimmedText);
+        resultElement.textContent = reversedText;
+        copyBtn.disabled = false;
+    } else {
+        resultElement.textContent = '';
+        copyBtn.disabled = true;
+    }
 }
 
 /**
@@ -103,18 +110,18 @@ function showCopyFeedback() {
 document.addEventListener('DOMContentLoaded', function() {
     const inputElement = document.getElementById('inputText');
     
-    // Permitir usar Enter para invertir el texto
+    // Procesar input en tiempo real
+    inputElement.addEventListener('input', function(event) {
+        processInput(event.target.value);
+    });
+    
+    // Permitir usar Enter para invertir el texto (mantener funcionalidad)
     inputElement.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             reverseString();
         }
     });
     
-    // Limpiar resultado cuando el input esté vacío
-    inputElement.addEventListener('input', function() {
-        if (this.value.trim() === '') {
-            document.getElementById('resultText').textContent = '';
-            document.getElementById('copyBtn').disabled = true;
-        }
-    });
+    // Procesar el valor inicial si existe
+    processInput(inputElement.value);
 });

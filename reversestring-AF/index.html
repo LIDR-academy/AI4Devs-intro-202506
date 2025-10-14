@@ -57,7 +57,16 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+        
+        .reverse-btn.visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
         }
         
         .reverse-btn:hover {
@@ -113,7 +122,7 @@
                 placeholder="Hello, welcome to AI4Devs"
                 maxlength="1000"
             >
-            <button class="reverse-btn" onclick="reverseString()">
+            <button class="reverse-btn" id="reverseBtn" onclick="reverseString()">
                 Reverse 🔄
             </button>
         </div>
