@@ -1,11 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
-</head>
-<body>
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inversor de Texto en Tiempo Real</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 28px;
+        text-align: center;
+      }
+
+      .subtitle {
+        color: #666;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        color: #555;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      input[type="text"]:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .result-container {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed #e0e0e0;
+        transition: all 0.3s ease;
+      }
+
+      .result-container.active {
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        border-color: #667eea;
+      }
+
+      .result-text {
+        font-size: 20px;
+        color: #333;
+        font-weight: 600;
+        word-break: break-all;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .result-text.empty {
+        color: #999;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .info-box {
+        background: #e8eaf6;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+        font-size: 13px;
+        color: #555;
+      }
+
+      .example {
+        font-weight: 600;
+        color: #667eea;
+      }
+
+      .char-count {
+        text-align: right;
+        font-size: 12px;
+        color: #999;
+        margin-top: 5px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 25px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        .result-text {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔄 Inversor de Texto</h1>
+      <p class="subtitle">Invierte cualquier texto en tiempo real</p>
+
+      <form id="reverseForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="inputText">Escribe tu texto:</label>
+          <input
+            type="text"
+            id="inputText"
+            name="inputText"
+            placeholder="Ejemplo: AI4Devs"
+            autocomplete="off"
+            aria-label="Campo de texto para invertir"
+          />
+          <div class="char-count" id="charCount">0 caracteres</div>
+        </div>
+
+        <div class="form-group">
+          <label>Resultado invertido:</label>
+          <div class="result-container" id="resultContainer">
+            <div class="result-text empty" id="resultText">
+              Tu texto invertido aparecerá aquí...
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="info-box">
+        <strong>💡 Ejemplo:</strong><br />
+        Entrada: <span class="example">AI4Devs</span> → Salida:
+        <span class="example">sveD4IA</span>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
