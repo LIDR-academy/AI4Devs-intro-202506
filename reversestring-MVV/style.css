@@ -1,0 +1,121 @@
+/* Tokens base + utilidades propias (sin estilos inline) */
+:root {
+    --radius-lg: 12px;
+    --radius-md: 10px;
+    --radius-sm: 8px;
+  
+    --border: hsl(240 5% 84%);
+    --bg: hsl(0 0% 100%);
+    --text: hsl(240 10% 10%);
+    --muted: hsl(240 5% 96%);
+    --primary: hsl(252 95% 60%);
+    --primary-contrast: #fff;
+    --primary-hover: hsl(252 95% 55%);
+    --danger: hsl(0 70% 50%);
+  }
+  
+  /* “Card” al estilo shadcn/ui */
+  .sh-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 0 rgba(0,0,0,.03), 0 2px 10px rgba(0,0,0,.03);
+  }
+  
+  .sh-card-title {
+    margin: 0 0 .75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  /* Label / Input / Error (shadcn-pattern) */
+  .sh-label {
+    font-weight: 600;
+  }
+  
+  .sh-input {
+    appearance: none;
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: calc(var(--radius-md));
+    padding: .625rem .75rem;
+    font-size: 1rem;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  
+  .sh-input::placeholder {
+    color: rgb(100 116 139); /* slate-500 */
+  }
+  
+  .sh-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+  
+  .sh-error {
+    color: var(--danger);
+    font-size: .95rem;
+    margin: .25rem 0 0;
+  }
+  
+  /* Buttons (primary & ghost) */
+  .sh-button,
+  .sh-button-ghost {
+    appearance: none;
+    border: 1px solid transparent;
+    padding: .625rem .9rem;
+    font-weight: 600;
+    border-radius: calc(var(--radius-sm));
+    cursor: pointer;
+    transition: transform .05s ease, background-color .15s ease, border-color .15s ease;
+  }
+  
+  .sh-button {
+    background: var(--primary);
+    color: var(--primary-contrast);
+  }
+  
+  .sh-button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+  
+  .sh-button:active {
+    transform: translateY(0);
+  }
+  
+  .sh-button-ghost {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border);
+  }
+  
+  .sh-button-ghost:hover {
+    background: var(--muted);
+  }
+  
+  /* Resultado */
+  .sh-result {
+    display: block;
+    border: 1px dashed var(--border);
+    border-radius: calc(var(--radius-sm));
+    padding: 1rem;
+    min-height: 3rem;
+    word-break: break-word;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .sh-card { padding: 1rem; }
+  }
+  
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .sh-button, .sh-button-ghost { transition: none; }
+    .sh-input:focus { box-shadow: none; }
+  }

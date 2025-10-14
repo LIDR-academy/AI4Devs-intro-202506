@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inversor de Cadenas — SPA accesible (shadcn-style)</title>
+    <meta name="description" content="SPA accesible que invierte cadenas en tiempo real con validación (mínimo 3 caracteres), diseño tipo shadcn/ui, responsive y SEO." />
+    <link rel="canonical" href="https://example.com/reverse-string-spa" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Inversor de Cadenas — SPA accesible" />
+    <meta property="og:description" content="Invierte texto en tiempo real con validación y excelente UX." />
+    <meta property="og:type" content="website" />
+
+    <!-- Radix Themes (base accesible, cercana a la que usa shadcn/ui) -->
+    <link rel="stylesheet" href="https://unpkg.com/@radix-ui/themes@3.1.3/dist/styles.css" />
+
+    <!-- Tailwind via CDN (utilidades, sin estilos inline) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Config rápida: tokens similares a shadcn/ui
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              border: "hsl(240 5% 84%)",
+              background: "hsl(0 0% 100%)",
+              foreground: "hsl(240 10% 10%)",
+              primary: {
+                DEFAULT: "hsl(252 95% 60%)",
+                foreground: "#ffffff",
+              },
+              muted: "hsl(240 5% 96%)",
+              destructive: "hsl(0 70% 50%)",
+            },
+            borderRadius: {
+              lg: "12px",
+              md: "10px",
+              sm: "8px",
+            },
+            boxShadow: {
+              card: "0 1px 0 rgba(0,0,0,.03), 0 2px 10px rgba(0,0,0,.03)",
+            },
+          },
+        },
+        corePlugins: { preflight: true }
+      }
+    </script>
+
+    <!-- CSS del proyecto (sin estilos inline) -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- JSON-LD para SEO como WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Inversor de Cadenas",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "description": "SPA que invierte texto en tiempo real con accesibilidad y SEO.",
+      "url": "https://example.com/reverse-string-spa"
+    }
+    </script>
+  </head>
+  <body class="min-h-screen bg-[radial-gradient(1200px_600px_at_10%_-10%,hsl(0_0%_98%),white)] text-foreground">
+    <noscript>
+      <p class="m-4">Este sitio es una SPA que requiere JavaScript para funcionar.</p>
+    </noscript>
+
+    <header class="container mx-auto px-4 py-10">
+      <h1 class="text-3xl font-bold tracking-tight">Inversor de Cadenas</h1>
+      <p class="text-slate-600">SPA accesible, responsive y optimizada para SEO (estilo shadcn/ui)</p>
+    </header>
+
+    <main id="app" class="container mx-auto px-4 pb-10" role="main">
+      <!-- Card (patrón shadcn/ui) -->
+      <section class="sh-card" aria-labelledby="form-title">
+        <h2 id="form-title" class="sh-card-title">Ingresa tu texto</h2>
+
+        <form id="reverse-form" novalidate class="grid gap-4">
+          <div class="grid gap-2">
+            <label for="inputText" class="sh-label">Cadena a invertir</label>
+            <input
+              id="inputText"
+              name="inputText"
+              type="text"
+              class="sh-input"
+              inputmode="text"
+              minlength="3"
+              autocomplete="off"
+              aria-describedby="inputHelp inputError"
+              aria-invalid="false"
+              placeholder="Escribe al menos 3 caracteres…"
+            />
+            <small id="inputHelp" class="text-sm text-slate-600">
+              Mínimo 3 caracteres. Sin cadenas vacías. Resultado en <strong>tiempo real</strong>.
+            </small>
+            <p id="inputError" class="sh-error" role="alert" aria-live="assertive" hidden></p>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button type="submit" id="submitBtn" class="sh-button">Invertir</button>
+            <button type="button" id="clearBtn" class="sh-button-ghost">Limpiar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="sh-card" aria-labelledby="result-title">
+        <h2 id="result-title" class="sh-card-title">Resultado</h2>
+        <output
+          id="result"
+          class="sh-result"
+          aria-live="polite"
+          tabindex="0"
+        >Nada por mostrar todavía.</output>
+      </section>
+    </main>
+
+    <footer class="container mx-auto px-4 py-8 text-slate-600">
+      <p>Diseño tipo shadcn/ui con Radix y Tailwind CDN. Sin estilos inline.</p>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
