@@ -3,9 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <title>Reverse String</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 20px 24px;
+            font-size: 1.1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+            background-color: white;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3b82f6;
+        }
+
+        input[type="text"]::placeholder {
+            color: #9ca3af;
+        }
+
+        .button-container {
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-reverse {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-reverse:hover:not(:disabled) {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-reverse:disabled {
+            background-color: #93c5fd;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-copy {
+            background-color: #6b7280;
+            color: white;
+            margin-top: 15px;
+        }
+
+        .btn-copy:hover {
+            background-color: #4b5563;
+            transform: translateY(-1px);
+        }
+
+        .result-container {
+            margin-top: 30px;
+        }
+
+        .result {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            min-height: 40px;
+            word-break: break-word;
+        }
+
+        .copied-message {
+            display: inline-block;
+            margin-left: 10px;
+            color: #059669;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .copied-message.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-<script src="script.js"></script>
+    <h1>Reverse String</h1>
+    
+    <div class="input-container">
+        <input 
+            type="text" 
+            id="inputString" 
+            placeholder="Hello, welcome to AI4Devs"
+            autocomplete="off"
+        >
+    </div>
+
+    <div class="button-container">
+        <button class="btn btn-reverse" id="reverseBtn" disabled>
+            Reverse 🔄
+        </button>
+    </div>
+
+    <div class="result-container">
+        <div class="result" id="resultLabel"></div>
+    </div>
+
+    <div>
+        <button class="btn btn-copy" id="copyBtn">
+            Copy 📋
+        </button>
+        <span class="copied-message" id="copiedMessage">¡Copiado!</span>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
