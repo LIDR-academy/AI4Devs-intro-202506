@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversor de Texto</title>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --bg-color: #f5f7fa;
+            --text-color: #222;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font-family);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 0.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #0d5ec2;
+            outline: none;
+        }
+
+        #result {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            min-height: 1.5em;
+            color: var(--text-color);
+            transition: opacity 0.3s ease;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🔄 Inversor de Texto</h1>
+        <p>Escribe un texto y obtén la cadena invertida instantáneamente.</p>
+    </header>
+
+    <main class="container">
+        <label for="textInput">Escribe un texto:</label>
+        <input type="text" id="textInput" aria-label="Texto a invertir" placeholder="Ejemplo: AI4Devs">
+        <button id="reverseButton" aria-label="Invertir texto">Invertir</button>
+        <div id="result" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        Creado por Jesús García García · <a href="mailto:jesusggarci@gmail.com">jesusggarci@gmail.com</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
