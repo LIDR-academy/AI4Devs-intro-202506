@@ -10,9 +10,13 @@
   <div class="container">
     <h1>Reverse String</h1>
     <input type="text" id="inputText" placeholder="Hello, welcome to AI4Devs">
+    <!-- This button is purely cosmetic (will show/hide automatically) No click needed to reverse. -->
     <button id="reverseBtn">Reverse 🔄</button>
-    <p id="result"></p>
-    <button id="copyBtn" class="copy">Copy 📋</button>
+
+    <!-- Live region so the reversed text is announced when it changes -->
+    <p id="result" aria-live="polite"></p>
+    <!-- Disabled until there is output -->
+    <button id="copyBtn" class="copy" disabled>Copy 📋</button>
   </div>
 
   <script src="script.js"></script>
