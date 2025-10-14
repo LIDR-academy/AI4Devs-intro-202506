@@ -1,3 +1,6 @@
+Chatbot utilizado: Claude 
+Modelo: Sonet 4.5
+
 Como desarrollador Front End Sr con más de 10 años de experiencia me ayudarás a resolver la siguiente solicitud.
 
 Implementa el sitio web de la imagen adjunta reversestring-example.png. El sitio debe:
