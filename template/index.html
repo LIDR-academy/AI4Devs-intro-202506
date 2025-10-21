@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inversor de Texto</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 2rem;
+    }
+
+    label,
+    input,
+    button,
+    p {
+      font-size: 1rem;
+    }
+
+    .row {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #resultado {
+      font-weight: 600;
+    }
+
+    .status {
+      margin-top: .75rem;
+      font-size: .9rem;
+    }
+
+    .ok {
+      color: #0d772e;
+    }
+
+    .err {
+      color: #9b1c1c;
+    }
+  </style>
 </head>
+
 <body>
-<script src="script.js"></script>
+  <h1>Inversor de Texto</h1>
+
+  <div class="row">
+    <label for="input-texto">Texto:</label>
+    <input id="input-texto" type="text" placeholder="Escribe algo..." />
+    <button id="btn-invertir">Inventir texto</button>
+  </div>
+
+  <p>Resultado: <span id="resultado" aria-live="polite"></span></p>
+
+  <div id="test-status" class="status" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
 </body>
+
 </html>
