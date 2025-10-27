@@ -5,7 +5,7 @@
 
 You're an expert software developer. Create a web page with JavaScript logic that reverses the order of a string using the attached index.html seed file and a script.js. 
 
-The output should be similar to the attached file reversestring-example.png, with a place to enter the input (sting), a button to reverse it, another place to view the result with the reversed string, and finally, a button to copy the result to the clipboard. 
+The output should be similar to the attached file reversestring-example.png, with a place to enter the input (string), a button to reverse it, another place to view the result with the reversed string, and finally, a button to copy the result to the clipboard.
 
 Follow best practices for developing both files, including all comments.
 
