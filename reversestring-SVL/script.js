@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Split string into characters, reverse, and join back
-        const reversed = input.split('').reverse().join('');
+        // Reverse using Array.from to properly handle Unicode graphemes
+        const reversed = [...input].reverse().join('');
         resultDisplay.textContent = reversed;
     };
 
