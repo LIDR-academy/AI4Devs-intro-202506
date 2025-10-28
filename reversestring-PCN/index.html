@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Reverse String</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        :root {
+            --gap: 16px;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.45;
+            margin: 0;
+            padding: 32px;
+            color: #111;
+            background: #fff;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 56px);
+            margin: 0 0 18px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+            margin-block: 8px 12px;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            padding: 18px 16px;
+            border: 1px solid #c9ced6;
+            border-radius: var(--radius);
+            font-size: 20px;
+            width: 100%;
+        }
+
+        input[type="text"]:focus {
+            outline: 3px solid #cfe4ff;
+            border-color: #5b9bff;
+        }
+
+        /* --- column layout: input → reverse btn → result → copy btn --- */
+        .action,
+        .copy {
+            margin-top: var(--gap);
+        }
+
+        button {
+            padding: 12px 20px;
+            border: 0;
+            border-radius: var(--radius);
+            background: #3267ff;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .08);
+        }
+
+        button:focus {
+            outline: 3px solid #cfe4ff;
+        }
+
+        .secondary {
+            background: #eef1f4;
+            color: #111;
+            border: 1px solid #dee2e6
+        }
+
+        button[disabled] {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .result {
+            min-height: 28px;
+            margin-block: 22px 8px;
+            font-size: clamp(20px, 3vw, 28px);
+            word-break: break-word;
+        }
+
+        .hint {
+            color: #5f6c7b;
+            font-size: 14px;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap" aria-labelledby="title">
+        <h1 id="title">Reverse String</h1>
+
+        <div class="field">
+            <label for="textInput">Enter text to reverse</label>
+            <!-- Prefilled; kept as requested -->
+            <input id="textInput" type="text" value="Hello, welcome to AI4Devs" placeholder="Hello, welcome to AI4Devs"
+                autocomplete="off" />
+        </div>
+
+        <!-- 1) Reverse button on its own row -->
+        <div class="action">
+            <button id="reverseBtn" type="button" aria-describedby="reverseHint">
+                <span aria-hidden="true">🔄</span>
+                Reverse
+            </button>
+            <span id="reverseHint" class="visually-hidden">Press to reverse the text above. Press Enter in the input
+                also works.</span>
+        </div>
+
+        <!-- 2) Result area (announced to AT) -->
+        <p id="result" class="result" dir="auto" role="status" aria-live="polite"></p>
+        <p id="emptyMsg" class="hint" hidden>Nothing to reverse yet. Type something above.</p>
+
+        <!-- 3) Copy button on its own row -->
+        <div class="copy">
+            <button id="copyBtn" type="button" class="secondary" disabled>
+                <span aria-hidden="true">📋</span>
+                Copy
+            </button>
+        </div>
+
+        <!-- ARIA live region for announcements -->
+        <div id="live" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
