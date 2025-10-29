@@ -30,7 +30,7 @@
 
         input {
             padding: 8px;
-            width: 200px;
+            width: 220px;
             border: 1px solid #ccc;
             border-radius: 6px;
             margin-bottom: 10px;
@@ -43,6 +43,7 @@
             padding: 8px 15px;
             border-radius: 6px;
             cursor: pointer;
+            display: none; /* Oculto por defecto */
         }
 
         button:hover {
@@ -61,7 +62,7 @@
     <h1>Invertir Cadena de Texto</h1>
     <input type="text" id="texto" placeholder="Introduce un texto">
     <br>
-    <button onclick="invertirTexto()">Invertir</button>
+    <button id="botonInvertir" onclick="mostrarAlerta()">Invertir (extra)</button>
     <p id="resultado"></p>
 </div>
 </body>
