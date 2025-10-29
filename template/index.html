@@ -1,11 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reverse String</title>
+  <style>
+    :root { --radius: 12px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 32px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: #f8fafc; color: #0f172a;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 48px; margin: 0 0 24px; font-weight: 700; }
+    .row { display: flex; gap: 12px; align-items: center; }
+    input[type="text"] {
+      flex: 1; font-size: 22px; padding: 18px 20px; border: 1px solid #cbd5e1; border-radius: var(--radius);
+      outline: none; background: white;
+    }
+    input[type="text"]:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(59,130,246,.2); }
+    button {
+      border: 0; padding: 14px 18px; font-size: 22px; border-radius: var(--radius); cursor: pointer;
+      display: inline-flex; gap: 10px; align-items: center;
+    }
+    .primary { background: #1d4ed8; color: white; }
+    .ghost { background: #e2e8f0; color: #0f172a; }
+    .out {
+      min-height: 48px; font-size: 28px; margin: 24px 0 16px; word-break: break-word;
+    }
+    .icon {
+      width: 22px; height: 22px; display: inline-block;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+  </style>
 </head>
 <body>
-<script src="script.js"></script>
+  <div class="wrap">
+    <h1>Reverse String</h1>
+
+    <div class="row" style="margin-bottom: 18px">
+      <label class="sr-only" for="inputText">Text to reverse</label>
+      <input id="inputText" type="text" placeholder="Hello, welcome to AI4Devs" />
+    </div>
+
+    <div class="row">
+      <button id="reverseBtn" class="primary" type="button" title="Reverse">
+        <span>Reverse</span>
+        <!-- refresh icon (unicode) -->
+        <span aria-hidden="true" class="icon">🔄</span>
+      </button>
+    </div>
+
+    <div id="outputText" class="out" aria-live="polite"></div>
+
+    <div class="row">
+      <button id="copyBtn" class="ghost" type="button" title="Copy">
+        <span>Copy</span>
+        <span aria-hidden="true" class="icon">📋</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
