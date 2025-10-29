@@ -1,40 +1,34 @@
-// Función pura: no tiene efectos colaterales y devuelve siempre la cadena invertida
+// Función pura: devuelve la cadena invertida preservando exactamente el contenido
 function reverseString(input) {
   if (typeof input !== 'string') return '';
 
-  // Opción preferente: segmentación por grafemas (manejo robusto de Unicode)
+  // Preferente: segmentación por grafemas para robustez Unicode
   if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
     const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
     const parts = Array.from(segmenter.segment(input), s => s.segment);
     return parts.reverse().join('');
   }
 
-  // Fallback: Array.from maneja pares sustitutos y muchos casos de Unicode
+  // Fallback seguro para la mayoría de casos Unicode
   return Array.from(input).reverse().join('');
 }
 
 (function () {
-  // Referencias del DOM
   const form = document.getElementById('reverseForm');
   const input = document.getElementById('textInput');
-  const button = document.getElementById('reverseBtn');
   const output = document.getElementById('resultOutput');
 
-  // Función que lee, invierte y muestra el resultado con seguridad (textContent)
   function computeAndRender() {
     const value = input.value || '';
     const reversed = reverseString(value);
-    output.textContent = reversed; // Evita XSS: no usar innerHTML
+    output.textContent = reversed; // Evita XSS
   }
 
-  // Enter dentro del input dispara submit del form
+  // Actualiza el resultado en tiempo real mientras el usuario escribe
+  input.addEventListener('input', computeAndRender);
+
+  // Evita envío accidental del formulario al presionar Enter
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-    computeAndRender();
-  });
-
-  // Click explícito en el botón (además del submit anterior)
-  button.addEventListener('click', function () {
-    computeAndRender();
   });
 })();
