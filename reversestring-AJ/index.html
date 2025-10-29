@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String - Invertir Cadenas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            border: 3px solid #FFD700;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: rotate 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            background: #FFF9E6;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+            margin-bottom: 30px;
+        }
+
+        .description p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .description .example {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border: 1px solid #FFD700;
+        }
+
+        .description .example strong {
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 18px;
+            border: 3px solid #FFD700;
+            border-radius: 12px;
+            font-size: 18px;
+            transition: all 0.3s;
+            background: #FFFEF5;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            min-height: 80px;
+            display: none;
+            border: 3px solid #FFD700;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result p {
+            color: #FFD700;
+            font-size: 2em;
+            font-weight: 700;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .features {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature {
+            background: #FFF9E6;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #FFD700;
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            color: #333;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🔄</div>
+            <h1>Reverse String</h1>
+            <p class="subtitle">Invierte cualquier cadena de texto al instante</p>
+        </div>
+
+        <div class="description">
+            <p><strong>¿Cómo funciona?</strong></p>
+            <p>Esta herramienta invierte el orden de los caracteres en cualquier texto que ingreses. Perfecta para crear palíndromos, códigos reversibles o simplemente divertirte con palabras.</p>
+            <div class="example">
+                📝 Ejemplo: <strong>AI4Devs</strong> → <strong>sveD4IA</strong>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <label for="inputString">✏️ Escribe tu texto aquí:</label>
+            <input 
+                type="text" 
+                id="inputString" 
+                placeholder="Escribe algo... por ejemplo: AI4Devs"
+                autocomplete="off"
+            >
+        </div>
+
+        <button onclick="reverseString()">
+            ⚡ Invertir Cadena
+        </button>
+
+        <div class="result" id="result">
+            <h3>✨ Resultado:</h3>
+            <p id="reversedText"></p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-text">Instantáneo</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-text">100% Preciso</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">Sin Límites</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💻</div>
+                <div class="feature-text">Offline</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
