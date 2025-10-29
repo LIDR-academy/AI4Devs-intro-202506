@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const reverseButton = document.getElementById('reverseBtn');
     const copyButton = document.getElementById('copyBtn');
 
+    // Ensure all required elements exist
+    if (!inputField || !resultDisplay || !reverseButton || !copyButton) {
+        console.error('Required DOM elements not found');
+        return;
+    }
+
     /**
      * Reverse the input string and display the result.
      * 
@@ -28,12 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const reverseString = () => {
         const input = inputField.value.trim();
 
-        if (input.length < 3) {
+        if (input.length <= 3) {
             resultDisplay.textContent = '⚠️ Please enter more than 3 characters.';
             return;
         }
 
-        const reversed = input.split('').reverse().join('');
+        // Unicode-aware reversal using Array.from or spread operator
+        const reversed = [...input].reverse().join('');
         resultDisplay.textContent = reversed;
     };
 
@@ -50,12 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = resultDisplay.textContent;
 
         if (!text || text.startsWith('⚠️')) {
-            alert('Nothing to copy yet!');
+            resultDisplay.textContent = '⚠️ Nothing to copy yet!';
             return;
         }
 
         navigator.clipboard.writeText(text)
-            .then(() => alert('✅ Reversed string copied to clipboard!'))
+            .then(() => {
+                const originalText = resultDisplay.textContent;
+                resultDisplay.textContent = '✅ Copied!';
+                setTimeout(() => resultDisplay.textContent = originalText, 2000);
+            })
             .catch(err => console.error('Clipboard copy failed:', err));
     };
 
@@ -70,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleInputChange = () => {
         const inputLength = inputField.value.trim().length;
-        reverseButton.style.display = inputLength >= 3 ? 'inline-block' : 'none';
+        reverseButton.style.display = inputLength > 3 ? 'inline-block' : 'none';
     };
 
     // === EVENT LISTENERS ===
