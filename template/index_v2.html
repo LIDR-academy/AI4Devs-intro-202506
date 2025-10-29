@@ -2,9 +2,9 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title>Invertir cadena — JavaScript</title>
+    <title>Invertir cadena — JavaScript (v2)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="script.js" defer></script>
+    <script src="script_v2.js" defer></script>
   </head>
   <body>
     <header>
@@ -13,12 +13,12 @@
 
     <main>
       <form id="reverseForm" aria-describedby="instrucciones">
-        <p id="instrucciones">Ingresa una cadena y presiona Enter o haz clic en “Invertir”.</p>
+        <p id="instrucciones">Escribe al menos 4 letras para habilitar el botón. Presiona Enter o haz clic en “Invertir”.</p>
 
         <label for="textInput">Texto a invertir</label>
         <input id="textInput" name="textInput" type="text" autocomplete="off" />
 
-        <button id="reverseBtn" type="submit">Invertir</button>
+        <button id="reverseBtn" type="submit" hidden>Invertir</button>
       </form>
 
       <section aria-label="Resultado">
