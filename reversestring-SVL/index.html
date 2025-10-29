@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            max-width: 600px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 5px;
+            transition: background 0.2s ease;
+        }
+
+        #reverseBtn {
+            background-color: #2563eb;
+            color: #fff;
+        }
+
+        #reverseBtn:hover {
+            background-color: #1d4ed8;
+        }
+
+        #copyBtn {
+            background-color: #6b7280;
+            color: #fff;
+        }
+
+        #copyBtn:hover {
+            background-color: #4b5563;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #111827;
+            word-wrap: break-word;
+            max-width: 600px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reverse String</h1>
+
+    <!-- Input text field -->
+    <input id="inputString" type="text" placeholder="Enter text to reverse...">
+
+    <!-- Reverse and Copy buttons -->
+    <div>
+        <button id="reverseBtn">Reverse 🔄</button>
+    </div>
+
+    <!-- Output area -->
+    <p id="result"></p>
+
+    <button id="copyBtn">Copy 📋</button>
+
+    <!-- External JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
