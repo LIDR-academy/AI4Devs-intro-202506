@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversor de Texto</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Usamos la fuente Inter, que es la estándar de Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Contenedor principal centrado -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+
+        <!-- Tarjeta principal -->
+        <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg shadow-xl w-full max-w-md">
+            
+            <h1 class="text-2xl sm:text-3xl font-bold text-center mb-6 text-indigo-600 dark:text-indigo-400">
+                Inversor de Texto
+            </h1>
+
+            <!-- Formulario -->
+            <div class="space-y-4">
+                <div>
+                    <label for="textInput" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Escribe tu texto:
+                    </label>
+                    <input 
+                        type="text" 
+                        id="textInput"
+                        placeholder="Escribe algo aquí..."
+                        class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                    >
+                </div>
+
+                <!-- Resultado en tiempo real -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Resultado en tiempo real:
+                    </label>
+                    <div 
+                        id="realTimeResult"
+                        class="w-full p-4 bg-gray-100 dark:bg-gray-700 rounded-md min-h-[50px] text-center text-lg font-mono break-all text-gray-600 dark:text-gray-300"
+                    >
+                        ...
+                    </div>
+                </div>
+
+                <!-- Botón de acción -->
+                <button 
+                    id="submitButton"
+                    disabled 
+                    class="w-full p-3 mt-2 bg-indigo-600 text-white rounded-md font-semibold transition-colors duration-200 ease-in-out
+                           hover:bg-indigo-700 
+                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                           disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
+                >
+                    Mostrar Resultado
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal de Alerta Personalizado (oculto por defecto) -->
+    <div id="alertBox" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl w-full max-w-sm text-center">
+            <h2 class="text-xl font-bold mb-4 text-indigo-600 dark:text-indigo-400">¡Texto Invertido!</h2>
+            <p id="alertText" class="text-lg font-mono mb-6 text-gray-700 dark:text-gray-200 break-all"></p>
+            <button 
+                id="closeAlert"
+                class="w-full px-4 py-2 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <!-- Enlazar el archivo JavaScript externo -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+
