@@ -1,11 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reverse String</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a;        /* slate-900 */
+      --muted: #475569;       /* slate-600 */
+      --border: #e2e8f0;      /* slate-200 */
+      --primary: #2563eb;     /* blue-600 */
+      --primary-hover: #1d4ed8;
+      --btn-text: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+    }
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 56px);
+      font-weight: 800;
+      margin: 0 0 28px;
+      letter-spacing: -0.02em;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .input {
+      flex: 1 1 600px;
+      height: 64px;
+      padding: 0 20px;
+      font-size: 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      color: var(--text);
+      background: #f8fafc; /* slate-50 */
+    }
+    .input:focus {
+      border-color: #cbd5e1; /* slate-300 */
+      background: #fff;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 56px;
+      padding: 0 22px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 700;
+      transition: transform .02s ease, background .15s ease;
+      user-select: none;
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--btn-text);
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .btn-outline {
+      background: #f1f5f9;     /* slate-100 */
+      color: var(--text);
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
+    .output {
+      margin-top: 28px;
+      font-size: 28px;
+      min-height: 40px;
+      word-break: break-word;
+    }
+    .hint {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .icon-rotate, .icon-clipboard {
+      width: 22px;
+      height: 22px;
+      display: inline-block;
+    }
+    .toast {
+      margin-left: 8px;
+      font-size: 14px;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .toast.show { opacity: 1; }
+  </style>
 </head>
 <body>
-<script src="script.js"></script>
+  <div class="container">
+    <h1>Reverse String</h1>
+
+    <div class="row">
+      <input id="textInput" class="input" type="text" autocomplete="off" placeholder="Escribe tu texto aquí"/>
+      <button id="reverseBtn" class="btn btn-primary" title="Reverse">
+        Reverse
+        <!-- ícono “refresh/rotate” -->
+        <svg class="icon-rotate" viewBox="0 0 24 24" fill="none">
+          <path d="M4 7v6h6M20 17v-6h-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="output" class="output"></div>
+
+    <div class="row" style="margin-top: 12px;">
+      <button id="copyBtn" class="btn btn-outline" title="Copy result">
+        Copy
+        <!-- ícono portapapeles -->
+        <svg class="icon-clipboard" viewBox="0 0 24 24" fill="none">
+          <rect x="7" y="4" width="10" height="4" rx="2" stroke="#0f172a" stroke-width="2"/>
+          <rect x="5" y="8" width="14" height="12" rx="2" stroke="#0f172a" stroke-width="2"/>
+        </svg>
+      </button>
+      <span id="copiedToast" class="toast">¡Copiado!</span>
+    </div>
+
+    <div class="hint">Tip: presiona Enter para invertir rápidamente.</div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
