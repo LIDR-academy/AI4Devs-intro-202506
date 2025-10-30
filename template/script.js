@@ -42,7 +42,5 @@ function reverseByCodePoints(str) {
     if (e.key === "Enter") doReverse();
   });
   
-  // Valor de ejemplo como en el mock
-  input.value = "Hello, welcome to AI4Devs";
   doReverse();
   
