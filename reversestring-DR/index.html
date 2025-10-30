@@ -5,13 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reverse String</title>
+
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background-color: #111827;
+            color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #38bdf8;
+            margin-bottom: 1rem;
+        }
+
+        input {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            padding: 0.6rem 1.2rem;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+
+            /* Estado oculto por defecto */
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        button.show {
+            /* Estado visible */
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        p {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+    </style>
+
+
 </head>
 
 <body>
     <h1>Inversor de texto</h1>
-    <input type="text" id="inputText" placeholder="Escribe algo...">
-    <button onclick="reverseString()">Invertir</button>
-    <p>Resultado: <span id="output"></span></p>
+
+    <input type="text" id="inputText" placeholder="Escribe algo..." />
+
+    <!-- El botón existe, pero empieza oculto -->
+    <button id="btnInvertir" onclick="reverseString()">Invertir</button>
+
+    <p>Resultado: <span id="output" aria-live="polite"></span></p>
+
     <script src="script.js"></script>
 </body>
 
