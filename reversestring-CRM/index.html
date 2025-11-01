@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir cadena</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, #f1f5f9, #e2e8f0 50%, #cbd5f5);
+        }
+
+        .card {
+            max-width: 420px;
+            width: 90vw;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px 28px 32px;
+            box-shadow: 0 14px 40px rgba(15, 23, 42, 0.2);
+            backdrop-filter: blur(6px);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin: 0 0 8px;
+            color: #0f172a;
+        }
+
+        p.description {
+            margin: 0 0 24px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.2);
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+            outline: none;
+        }
+
+        .result {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(99, 102, 241, 0.08);
+            border-radius: 12px;
+            color: #1e1b4b;
+            min-height: 56px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .result strong {
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+        }
+
+        .result span {
+            word-break: break-word;
+            font-size: 1.1rem;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        button {
+            display: none;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35);
+        }
+
+        button.visible {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            textarea {
+                min-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="card" aria-labelledby="page-title">
+        <h1 id="page-title">Inversor de cadenas</h1>
+        <p class="description">
+            Escribe un texto y observa cómo se invierte en tiempo real. El botón de acción aparece cuando hay al menos cuatro caracteres.
+        </p>
+
+        <label for="source-text">Texto original</label>
+        <textarea id="source-text" placeholder="Escribe aquí, por ejemplo: AI4Devs" autocomplete="off" aria-describedby="result-label"></textarea>
+
+        <section class="result" aria-live="polite" aria-atomic="true">
+            <strong id="result-label">Texto invertido:</strong>
+            <span id="reversed-text">—</span>
+        </section>
+
+        <div class="actions">
+            <button id="copy-button" type="button" aria-live="polite">Copiar resultado</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
