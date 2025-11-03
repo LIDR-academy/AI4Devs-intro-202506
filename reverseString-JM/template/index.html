@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --bg-light: #f8f4ee;
+        --bg-dark: #1c1c1c;
+        --card-light: #ffffff;
+        --card-dark: #2b2b2b;
+        --text-light: #222;
+        --text-dark: #f4f4f4;
+        --primary: #0078d7;
+        --copy-btn: #ff9800;
+        --radius: 10px;
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: var(--bg-light);
+        transition: var(--transition);
+      }
+
+      body.dark {
+        background: var(--bg-dark);
+      }
+
+      .container {
+        background: var(--card-light);
+        color: var(--text-light);
+        padding: 2rem;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+        width: 90%;
+        max-width: 450px;
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      body.dark .container {
+        background: var(--card-dark);
+        color: var(--text-dark);
+      }
+
+      h1 {
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+        font-size: 1.8rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ccc;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        transition: var(--transition);
+      }
+
+      input:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 8px rgba(0, 120, 215, 0.3);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      #boton {
+        background: var(--primary);
+        color: white;
+      }
+
+      #boton:hover {
+        background: #005fa3;
+      }
+
+      #copiarBtn {
+        background: var(--copy-btn);
+        color: white;
+        margin-left: 10px;
+      }
+
+      #copiarBtn:hover {
+        background: #e68a00;
+      }
+
+      #resultado {
+        margin-top: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        font-size: 1.3rem;
+        word-wrap: break-word;
+      }
+
+      .theme-toggle {
+        margin-top: 1.5rem;
+        background: transparent;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        padding: 8px 16px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+
+      .theme-toggle:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+        .btn {
+          width: 100%;
+          margin-top: 10px;
+        }
+        #copiarBtn {
+          margin-left: 0;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .container {
+          max-width: 600px;
+          padding: 3rem;
+        }
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+    <title>Reverse String</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Invertir Cadena de Texto</h1>
+      <input type="text" id="texto" placeholder="Escribe algo..." />
+      <button id="boton" class="btn" onclick="invertirCadena()">
+        Invertir
+      </button>
+      <div id="resultado"></div>
+      <button id="copiarBtn" class="btn" style="display: none">Copiar</button>
+      <button class="theme-toggle" id="themeToggle">
+        Cambiar a tema oscuro
+      </button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
