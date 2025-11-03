@@ -1,0 +1,111 @@
+/* Basic reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: #1f2937;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  margin: 0 0 24px;
+  font-weight: 700;
+}
+
+.input-wrap {
+  position: relative;
+  display: block;
+}
+
+.input-wrap input {
+  width: 100%;
+  font-size: 28px;
+  padding: 20px 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+
+.input-wrap input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59,130,246,.15);
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  transition: transform .05s ease, opacity .2s ease, background-color .2s ease;
+  user-select: none;
+}
+
+.btn .icon { display: inline-flex; }
+
+.btn:active { transform: translateY(1px); }
+
+.btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.btn.secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.result {
+  margin-top: 28px;
+  font-size: 32px;
+  min-height: 40px;
+  word-break: break-word;
+}
+
+/* Tooltip base */
+.tooltip {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -40px;
+  background: #111827;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+}
+
+/* Tooltip for Copy button wrapper */
+.tooltip-wrap { position: relative; display: inline-block; }
+
+/* Input tooltip positioning */
+.input-tip {
+  right: 20px;
+  left: auto;
+  transform: none;
+  top: -12px;
+}

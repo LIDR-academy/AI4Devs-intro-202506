@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverse String</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Reverse String</h1>
+
+    <label class="input-wrap" for="textInput" aria-label="Enter text to reverse">
+      <input
+        id="textInput"
+        type="text"
+        placeholder="Hello, welcome to AI4Devs"
+        autocomplete="off"
+      />
+    </label>
+
+    <div class="actions">
+      <button id="reverseBtn" class="btn primary" disabled>
+        <span class="icon" aria-hidden="true">
+          <!-- refresh icon -->
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M12 6v3l4-4-4-4v3C7.58 4 4 7.58 4 12c0 1.19.26 2.32.72 3.33l1.53-1.53A5.94 5.94 0 0 1 6 12c0-3.31 2.69-6 6-6zm7.28 2.67L17.75 10.2A5.94 5.94 0 0 1 18 12c0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.19-.26-2.32-.72-3.33z"></path>
+          </svg>
+        </span>
+        Reverse
+      </button>
+
+      <div class="tooltip-wrap">
+        <button id="copyBtn" class="btn secondary" disabled>
+          <span class="icon" aria-hidden="true">
+            <!-- copy/clipboard icon -->
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path d="M16 1H8a2 2 0 0 0-2 2v2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7l-4-6zM8 3h8l2 3H6V3a0 0 0 0 1 0 0zm7 16H5V7h11v12z"></path>
+            </svg>
+          </span>
+          Copy
+        </button>
+        <span id="copiedTip" role="status" aria-live="polite" class="tooltip" hidden>Copied</span>
+      </div>
+    </div>
+
+    <p id="result" class="result" aria-live="polite"></p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
