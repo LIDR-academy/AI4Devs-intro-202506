@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="standard">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reverse String — Jaime Caicedo Gorlovetsky</title>
+  <meta name="description" content="Masters-level project: Reverse String tool with grapheme-aware logic and live preview, themed presentation." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- ===== Presentation / Cover ===== -->
+    <header class="cover">
+      <div class="cover__bar">
+        <div class="brand">
+          <div class="brand__glyph" aria-hidden="true"></div>
+          <div class="brand__name">LIDR Academy • AI4Devs</div>
+        </div>
+        <div class="bar-right">
+          <!-- Costume label with tooltip -->
+          <span
+            class="costume-badge has-tooltip"
+            id="costumeBadge"
+            aria-live="polite"
+            title="It´s Halloween and you can dress me up.. discover how."
+          >
+            <span class="costume-dot" aria-hidden="true"></span>
+            I am dressed as: <strong id="costumeName">Standard</strong>
+          </span>
+          <span class="badge" aria-label="Assignment badge">Masters Project</span>
+        </div>
+      </div>
+
+      <div class="cover__content">
+        <div>
+          <h1 class="title">Reverse String</h1>
+          <p class="subtitle">Grapheme-aware reversal with live preview & accessible UI</p>
+        </div>
+
+        <dl class="meta" aria-label="Submission metadata">
+          <div>
+            <dt>Student</dt>
+            <dd>Jaime Caicedo Gorlovetsky</dd>
+          </div>
+          <div>
+            <dt>School</dt>
+            <dd>LIDR Academy</dd>
+          </div>
+          <div>
+            <dt>Program</dt>
+            <dd>AI4Devs</dd>
+          </div>
+          <div>
+            <dt>Assignment</dt>
+            <dd>Reverse String</dd>
+          </div>
+          <div>
+            <dt>Date</dt>
+            <dd>
+              October 31/2025
+              <!-- Halloween trigger (shows when standard) -->
+              <button id="halloweenBtn" class="halloween-btn" title="It´s Halloweenm dress me up" aria-label="Open Halloween themes">🎃</button>
+              <!-- Reset trigger (shows when themed) -->
+              <button id="resetThemeBtn" class="reset-btn" title="Return to standard style" aria-label="Return to standard style" style="display:none">🎭</button>
+            </dd>
+          </div>
+          <div>
+            <dt>Chat/Model:</dt>
+            <dd>ChatGPT / GPT 5 Thinking</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <!-- ===== Working Panel ===== -->
+    <section class="panel" aria-labelledby="work-title">
+      <div class="panel__head">
+        <h2 id="work-title">Interactive Demo</h2>
+        <p class="help">Type any text (e.g., <code>AI4Devs</code>). The reversed string updates instantly.</p>
+      </div>
+      <div class="panel__body">
+        <label for="inputText">Text to process</label>
+        <input id="inputText" class="input" type="text" placeholder="AI4Devs" autocomplete="off" />
+
+        <div class="result-label">
+          <label id="reversedLabel" for="inputText">Reversed string</label>
+          <span class="pill">grapheme-aware</span>
+        </div>
+        <div id="result" class="result" aria-live="polite" role="status"></div>
+
+        <p class="note">
+          Implementation detail: uses <code>Intl.Segmenter</code> when available to reverse by grapheme clusters
+          (emojis and combining marks remain intact); falls back to code-point reversal otherwise.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Modal (themed popup) ===== -->
+  <div id="themeModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="themeModalTitle">
+    <div class="modal">
+      <div class="modal__head">
+        <h3 class="modal__title" id="themeModalTitle">How do you want to dress up?</h3>
+        <button class="modal__close" id="themeModalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modal__body">
+        <div class="theme-grid">
+          <button class="theme-btn" data-theme-choice="pumpkin">🎃 Pumpkin</button>
+          <button class="theme-btn" data-theme-choice="dracula">🧛 Dracula</button>
+          <button class="theme-btn" data-theme-choice="retrofuturistic">🛸 Retrofuturistic</button>
+          <button class="theme-btn" data-theme-choice="startrek">🖖 Star Trek</button>
+        </div>
+        <p class="note">Themes change only colors/background accents. Functionality & layout remain unchanged.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
