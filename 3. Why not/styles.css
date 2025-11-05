@@ -1,0 +1,313 @@
+/* ==========================================================================
+   styles.css — Reverse String (Masters Project)
+   Structure:
+     1) Design tokens
+     2) Theming (standard + vibrant variants)
+     3) Base + layout
+     4) Components (cover, badges, inputs, panels, modal)
+     5) Tooltip utility
+     6) Print rules
+   ========================================================================== */
+
+/* 1) DESIGN TOKENS (Standard) */
+:root{
+  --bg: #0b0c10;
+  --panel: #111319;
+  --panel-2: #151824;
+  --text: #e9edf1;
+  --muted: #a6b0bf;
+  --accent: #6ea8fe;
+  --accent-2:#8be9fd;
+  --stroke:#262b36;
+  --focus: #9cc2ff;
+  --radius-xl: 18px;
+  --radius-md: 12px;
+  --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-2: 0 3px 12px rgba(0,0,0,.25);
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --badge-bg: linear-gradient(180deg, var(--panel-2), transparent);
+  --result-bg: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+}
+
+@media (prefers-color-scheme: light) {
+  :root{
+    --bg: #f7f8fb;
+    --panel: #ffffff;
+    --panel-2: #f3f5fa;
+    --text: #0f172a;
+    --muted: #475569;
+    --accent: #345bdf;
+    --accent-2:#198fb6;
+    --stroke:#e6eaf2;
+    --focus: #5c83ff;
+    --badge-bg: linear-gradient(180deg, #eef2ff, transparent);
+    --result-bg: linear-gradient(180deg, #ffffff, #fafafa);
+  }
+}
+
+/* 2) THEMING OVERRIDES (VIBRANT) */
+/* Pumpkin */
+html[data-theme="pumpkin"]{
+  --bg:#0a0a0a;
+  --panel:#14100d;
+  --panel-2:#1b1612;
+  --text:#fff3e6;
+  --muted:#ffd7b0;
+  --accent:#ff6a00;     /* hot pumpkin */
+  --accent-2:#22c55e;   /* stem green */
+  --stroke:#3b2716;
+  --focus:#ffb366;
+  --badge-bg: linear-gradient(180deg, rgba(255,106,0,.22), rgba(34,197,94,.10));
+  --result-bg: linear-gradient(180deg, rgba(255,106,0,.12), rgba(0,0,0,0));
+}
+html[data-theme="pumpkin"] body{
+  background:
+    radial-gradient(1200px 560px at 0% -10%, rgba(255,106,0,.24), transparent 62%),
+    radial-gradient(1000px 520px at 120% -10%, rgba(34,197,94,.18), transparent 60%),
+    radial-gradient(900px 480px at 50% 110%, rgba(255,179,102,.10), transparent 60%),
+    var(--bg);
+}
+
+/* Dracula */
+html[data-theme="dracula"]{
+  --bg:#07060a;
+  --panel:#100a1a;
+  --panel-2:#160e26;
+  --text:#f7e8ff;
+  --muted:#e5c7ff;
+  --accent:#b26aff;     /* vivid purple */
+  --accent-2:#ff1744;   /* neon blood */
+  --stroke:#2b1a4a;
+  --focus:#d6a3ff;
+  --badge-bg: linear-gradient(180deg, rgba(178,106,255,.22), rgba(255,23,68,.12));
+  --result-bg: linear-gradient(180deg, rgba(255,23,68,.10), rgba(0,0,0,0));
+}
+html[data-theme="dracula"] body{
+  background:
+    radial-gradient(1200px 560px at 10% -10%, rgba(178,106,255,.28), transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, rgba(255,23,68,.18), transparent 55%),
+    radial-gradient(700px 420px at 50% 120%, rgba(210,166,255,.10), transparent 60%),
+    var(--bg);
+}
+
+/* Retrofuturistic */
+html[data-theme="retrofuturistic"]{
+  --bg:#05070d;
+  --panel:#081024;
+  --panel-2:#0d1732;
+  --text:#e9f4ff;
+  --muted:#a6ccff;
+  --accent:#00e5ff;     /* neon cyan */
+  --accent-2:#ff6cf6;   /* neon magenta */
+  --stroke:#1a2b52;
+  --focus:#7dd3fc;
+  --badge-bg: linear-gradient(90deg, rgba(0,229,255,.24), rgba(255,108,246,.16));
+  --result-bg: linear-gradient(180deg, rgba(0,229,255,.10), rgba(255,108,246,.08));
+}
+html[data-theme="retrofuturistic"] body{
+  background:
+    radial-gradient(1200px 620px at 50% -20%, rgba(0,229,255,.28), transparent 65%),
+    radial-gradient(1000px 560px at 120% -10%, rgba(255,108,246,.20), transparent 60%),
+    radial-gradient(900px 540px at -10% 110%, rgba(125,211,252,.10), transparent 60%),
+    var(--bg);
+}
+
+/* Star Trek */
+html[data-theme="startrek"]{
+  --bg:#070a12;
+  --panel:#0c101b;
+  --panel-2:#0f1522;
+  --text:#f5fbff;
+  --muted:#b6d2ff;
+  --accent:#ffb300;   /* LCARS amber, bright */
+  --accent-2:#5eb1ff; /* Starfleet blue */
+  --stroke:#233048;
+  --focus:#93c5fd;
+  --badge-bg: linear-gradient(90deg, rgba(255,179,0,.26), rgba(94,177,255,.16));
+  --result-bg: linear-gradient(180deg, rgba(94,177,255,.12), rgba(0,0,0,0));
+}
+html[data-theme="startrek"] body{
+  background:
+    radial-gradient(1100px 520px at 0% -10%, rgba(255,179,0,.24), transparent 60%),
+    radial-gradient(900px 500px at 120% 0%, rgba(94,177,255,.20), transparent 55%),
+    radial-gradient(800px 460px at 50% 120%, rgba(147,197,253,.10), transparent 60%),
+    var(--bg);
+}
+
+/* 3) BASE + LAYOUT */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(110,168,254,.15), transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, rgba(139,233,253,.08), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font: 16px/1.55 var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container{ max-width: 980px; margin: 4rem auto; padding: 0 20px; }
+
+/* 4) COMPONENTS */
+/* Header / Cover */
+.cover{
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.cover__bar{
+  display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center;
+  padding: 18px 22px;
+  background: linear-gradient(90deg, rgba(110,168,254,.16), rgba(139,233,253,.10) 60%, transparent);
+  border-bottom: 1px solid var(--stroke);
+}
+.brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px; }
+.brand__glyph{
+  width: 36px; height: 36px; border-radius: 10px;
+  background: conic-gradient(from 200deg, var(--accent), var(--accent-2));
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), 0 6px 18px rgba(0,0,0,.25);
+}
+.brand__name{ font-size: 18px; }
+
+.bar-right{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+
+.badge{
+  font-weight: 700; font-size: 12px; letter-spacing:.3px;
+  color: var(--text);
+  padding: 6px 10px; border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--badge-bg);
+}
+.costume-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  font-weight: 800; font-size: 12px; letter-spacing:.3px;
+  color: var(--text); padding: 6px 10px; border-radius: 999px;
+  border: 1px solid var(--stroke); background: var(--badge-bg);
+}
+.costume-dot{
+  width:10px;height:10px;border-radius:999px;background:var(--accent);
+  box-shadow:0 0 0 2px rgba(255,255,255,.08), 0 0 16px var(--accent);
+}
+
+.cover__content{ display: grid; gap: 16px; padding: 22px; }
+.title{ font-size: clamp(28px, 4.4vw, 40px); line-height: 1.2; margin: 0; letter-spacing: .2px; }
+.subtitle{ margin: 4px 0 0; color: var(--muted); font-weight: 500; }
+
+.meta{
+  margin-top: 8px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 10px;
+  padding: 14px; border-radius: var(--radius-md);
+  background: var(--panel-2);
+  border: 1px solid var(--stroke);
+}
+.meta dt{ color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; }
+.meta dd{ margin: 2px 0 0; font-weight: 600; display:flex; align-items:center; gap:8px; }
+
+/* Work Panel */
+.panel{ margin-top: 22px; background: var(--panel); border: 1px solid var(--stroke); border-radius: var(--radius-xl); box-shadow: var(--shadow-2); overflow: hidden; }
+.panel__head{ padding: 16px 20px; border-bottom: 1px solid var(--stroke); display:flex; align-items:center; justify-content:space-between; gap: 12px; }
+.panel__head h2{ font-size: 18px; margin: 0; letter-spacing:.2px; }
+.help{ color: var(--muted); font-size: 14px; margin: 0; }
+.panel__body{ padding: 20px; display: grid; gap: 12px; }
+
+label{ font-weight: 700; }
+.input{
+  width: 100%; padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--stroke); background: var(--panel-2); color: var(--text); outline: none; font-size: 16px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.input:focus{ border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 25%, transparent); }
+
+.result-label{ display:flex; align-items:center; gap: 10px; }
+.pill{ font-size: 12px; color: var(--muted); padding: 4px 8px; border-radius: 999px; border: 1px solid var(--stroke); background: var(--panel-2); }
+
+.result{
+  min-height: 48px; padding: 12px 14px; border-radius: 12px;
+  border: 1px dashed var(--stroke); background: var(--result-bg);
+  font-size: 16px; word-wrap: break-word;
+}
+.note{ margin-top: 4px; font-family: var(--mono); color: var(--muted); font-size: 13px; }
+
+/* Halloween triggers */
+.halloween-btn, .reset-btn{
+  background: transparent; border: 1px solid var(--stroke);
+  border-radius: 10px; padding: 4px 8px; cursor: pointer;
+  color: var(--text); font-size: 16px; line-height: 1;
+}
+.halloween-btn:hover, .reset-btn:hover{ border-color: var(--focus); }
+
+/* Modal */
+.modal-backdrop{
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  display: none; align-items: center; justify-content: center; padding: 20px; z-index: 50;
+}
+.modal{
+  width: min(620px, 96vw); background: var(--panel);
+  border: 1px solid var(--stroke); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-1); overflow: hidden;
+}
+.modal__head{
+  padding: 14px 18px; border-bottom: 1px solid var(--stroke);
+  display:flex; align-items:center; justify-content:space-between; gap: 8px;
+}
+.modal__title{ margin: 0; font-size: 18px; }
+.modal__close{
+  background: transparent; border: 1px solid var(--stroke); border-radius: 10px; padding: 4px 8px; color: var(--text); cursor: pointer;
+}
+.modal__body{ padding: 18px; display: grid; gap: 12px; }
+.theme-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; }
+.theme-btn{
+  padding: 12px; border-radius: 12px; border: 1px solid var(--stroke);
+  background: var(--panel-2); color: var(--text); cursor: pointer; font-weight: 700;
+}
+.theme-btn:hover{ border-color: var(--focus); }
+
+/* 5) TOOLTIP UTILITY
+   - Works with [title] for native browsers and [data-tooltip] for custom styling
+   - Use: .has-tooltip[data-tooltip="..."] */
+.has-tooltip{
+  position: relative;
+}
+.has-tooltip::after{
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0; top: calc(100% + 8px);
+  white-space: nowrap;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--stroke);
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  box-shadow: var(--shadow-2);
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.has-tooltip:hover::after,
+.has-tooltip:focus-within::after{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 6) PRINT */
+@media print {
+  body { background: #fff; color: #000; }
+  .container { margin: 0; max-width: 100%; }
+  .cover, .panel, .modal { box-shadow: none !important; border-color: #c9ced8; }
+  .brand__glyph { filter: grayscale(100%); }
+  a { color: #000; text-decoration: underline; }
+  .halloween-btn, .reset-btn { display:none; }
+  .modal-backdrop{ display:none !important; }
+}
