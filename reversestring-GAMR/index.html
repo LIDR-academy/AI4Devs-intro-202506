@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Invertir Cadena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            min-height: 100vh;
+        }
+        .card {
+            border-radius: 1rem;
+        }
+        #resultado {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="d-flex align-items-center justify-content-center">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg p-4">
+                    <h3 class="text-center mb-4">Invertir Cadena de Texto</h3>
+
+                    <!-- Alertas -->
+                    <div id="alertaError" class="alert alert-danger d-none" role="alert"></div>
+                    <div id="alertaExito" class="alert alert-success d-none" role="alert">
+                        Texto invertido correctamente.
+                    </div>
+
+                    <!-- Entrada -->
+                    <div class="mb-3">
+                        <label for="texto" class="form-label">Texto a invertir</label>
+                        <input
+                            type="text"
+                            id="texto"
+                            class="form-control"
+                            placeholder="Entre 3 y 20 caracteres"
+                        >
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="d-grid mb-3">
+                        <button id="btnInvertir" class="btn btn-primary">
+                            Invertir texto
+                        </button>
+                    </div>
+
+                    <!-- Resultado -->
+                    <div id="resultado" class="text-center text-primary d-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
