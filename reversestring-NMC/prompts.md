@@ -1,0 +1,11 @@
+Chatbot: Github Copilot
+Model: claude-sonnet-4.6 (medium)
+
+Prompts:
+
+------------------------
+
+I need to do a simple reverse string page. In the directory @reversestring-NMC/ there is an basic index.html file and an empty script.js (to placehold the program code). Analyze the image [📷 reversestring-example.png] this shows how the page should look like. Create the required HTML components in index html (title, text input, buttons and area to display the output). Andcreate the JavaScript code necesary for the page to function, so that when clicked/pushed on the "Reverse" button it displays the reverse string in the output area. When clicked/pushed on the "Copy" button copy the inverse string to the clipboard. Ask me any questions if you need any clarification
+
+-------------------------
+Now, let's make a couple of improvemnts. Let's remove the "Reverse" button, so that it reverse the string as is typed. And when clicked on the "Copy" button, it shows a feedback message below the button so the user knows it acted, and then dissapears after a few seconds.
