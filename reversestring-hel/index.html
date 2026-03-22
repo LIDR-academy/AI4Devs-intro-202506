@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir Cadena de Texto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f2f5;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 480px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.4rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #6c63ff;
+        }
+
+        .result {
+            margin-top: 1.2rem;
+            padding: 0.75rem 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            min-height: 2.8rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            word-break: break-all;
+        }
+
+        .result:empty::before {
+            content: 'Escribe algo arriba...';
+            color: #aaa;
+            font-style: italic;
+        }
+
+        button {
+            margin-top: 1.2rem;
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background: #6c63ff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: none;
+        }
+
+        button:hover {
+            background: #5a52d5;
+        }
+
+        button.visible {
+            display: block;
+        }
+
+        .copied-msg {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #6c63ff;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .copied-msg.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Invertir Cadena de Texto</h1>
+        <label for="inputText">Texto original</label>
+        <input type="text" id="inputText" placeholder="Escribe aquí, ej: AI4Devs" autofocus>
+        <div class="result" id="result"></div>
+        <button id="copyBtn">Copiar resultado</button>
+        <p class="copied-msg" id="copiedMsg">¡Copiado al portapapeles!</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
