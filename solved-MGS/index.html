@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              mono: ['JetBrains Mono', 'monospace'],
+              display: ['Syne', 'sans-serif'],
+            },
+            colors: {
+              neon: '#00ffc8',
+              accent: '#ff3366',
+              surface: '#0a0a0f',
+              panel: '#111118',
+              stroke: '#1e1e2a',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        background-color: #0a0a0f;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Scanline overlay */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 255, 200, 0.015) 2px,
+          rgba(0, 255, 200, 0.015) 4px
+        );
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      /* Grain texture */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 99;
+      }
+
+      /* Ambient glow orbs */
+      .glow-orb-1 {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(0, 255, 200, 0.06) 0%, transparent 70%);
+        top: -150px;
+        right: -100px;
+        pointer-events: none;
+      }
+
+      .glow-orb-2 {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 51, 102, 0.04) 0%, transparent 70%);
+        bottom: -100px;
+        left: -80px;
+        pointer-events: none;
+      }
+
+      /* Input caret color */
+      #text-input {
+        caret-color: #00ffc8;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+
+      #text-input:focus {
+        box-shadow: 0 0 0 1px #00ffc8, 0 0 30px rgba(0, 255, 200, 0.08);
+        border-color: #00ffc8;
+        outline: none;
+      }
+
+      #text-input::placeholder {
+        color: #3a3a50;
+        font-style: italic;
+      }
+
+      /* Shake animation */
+      .shake {
+        animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+
+      @keyframes shake {
+        10%, 90% { transform: translateX(-2px); }
+        20%, 80% { transform: translateX(4px); }
+        30%, 50%, 70% { transform: translateX(-6px); }
+        40%, 60% { transform: translateX(6px); }
+      }
+
+      /* Button */
+      #submit-btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      /* Disabled state */
+      #submit-btn.btn-disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        border-color: #1e1e2a;
+        color: #3a3a50;
+        background: rgba(17, 17, 24, 0.5);
+      }
+
+      #submit-btn.btn-disabled .arrow-icon {
+        opacity: 0.3;
+      }
+
+      #submit-btn.btn-disabled::before {
+        display: none;
+      }
+
+      /* Enabled state */
+      #submit-btn.btn-enabled {
+        animation: btnActivate 0.35s ease forwards;
+      }
+
+      @keyframes btnActivate {
+        0%   { opacity: 0.3; transform: scale(0.97); }
+        50%  { transform: scale(1.03); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      #submit-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(0, 255, 200, 0.15), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+
+      #submit-btn:not(.btn-disabled):hover::before {
+        transform: translateX(100%);
+      }
+
+      #submit-btn:not(.btn-disabled):hover {
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.2), inset 0 0 20px rgba(0, 255, 200, 0.05);
+      }
+
+      #submit-btn:not(.btn-disabled):active {
+        transform: scale(0.97);
+      }
+
+      /* Result container */
+      #result-container {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      #result-container.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Typing cursor */
+      #result-text::after {
+        content: '▊';
+        color: #00ffc8;
+        animation: blink 0.8s step-end infinite;
+        margin-left: 2px;
+        font-weight: 300;
+      }
+
+      #result-text.done::after {
+        animation: none;
+        opacity: 0;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+
+      /* Arrow icon */
+      .arrow-icon {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+
+      #submit-btn:hover .arrow-icon {
+        transform: translateX(3px);
+      }
+
+      /* Status bar decorative dots */
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+      }
+
+      /* Decorative border line */
+      .border-glow {
+        background: linear-gradient(90deg, transparent, #00ffc8, transparent);
+        height: 1px;
+        opacity: 0.15;
+      }
+
+      /* Label style */
+      .field-label {
+        letter-spacing: 0.15em;
+      }
+
+      /* Fade in on load */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.6s ease forwards;
+      }
+
+      .fade-up-delay-1 { animation-delay: 0.1s; }
+      .fade-up-delay-2 { animation-delay: 0.25s; }
+      .fade-up-delay-3 { animation-delay: 0.4s; }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+</head>
+<body class="font-mono text-white antialiased">
+
+  <!-- Ambient glow -->
+  <div class="glow-orb-1"></div>
+  <div class="glow-orb-2"></div>
+
+  <div class="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-xl">
+
+      <!-- Header -->
+      <div class="fade-up mb-10">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="status-dot bg-neon"></div>
+          <span class="text-[10px] uppercase tracking-[0.3em] text-neutral-500">sys.active</span>
+        </div>
+        <h1 id="main-title" class="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-none mb-2">
+          Reverse<span class="text-neon">.</span>
+        </h1>
+        <p class="text-neutral-500 text-sm leading-relaxed max-w-sm">
+          Feed a string. Get it mirrored, character by character.
+        </p>
+      </div>
+
+      <!-- Input area -->
+      <div class="fade-up fade-up-delay-1 mb-6">
+        <label class="field-label block text-[10px] uppercase text-neutral-500 mb-2 font-medium">Input string</label>
+        <div class="flex gap-3">
+          <input
+            type="text"
+            id="text-input"
+            placeholder="Type something..."
+            class="flex-1 bg-panel border border-stroke rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-600 font-mono focus:border-neon"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button
+            id="submit-btn"
+            disabled
+            class="bg-neon/10 border border-neon/30 text-neon rounded-lg px-5 py-3 text-sm font-medium tracking-wide flex items-center gap-2 whitespace-nowrap btn-disabled"
+          >
+            Enviar
+            <span class="arrow-icon">→</span>
+          </button>
+        </div>
+        <p id="min-hint" class="text-[10px] text-neutral-600 mt-2 tracking-wide transition-opacity duration-300">min. 4 characters</p>
+      </div>
+
+      <div class="border-glow fade-up fade-up-delay-2"></div>
+
+      <!-- Result area -->
+      <div class="fade-up fade-up-delay-3 mt-6">
+
+        <!-- Placeholder -->
+        <div id="placeholder" class="flex items-center gap-3 py-8">
+          <svg class="w-4 h-4 text-neutral-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-neutral-600 text-xs italic">Awaiting input…</span>
+        </div>
+
+        <!-- Result -->
+        <div id="result-container" class="hidden">
+          <div class="flex items-center justify-between mb-3">
+            <span class="field-label text-[10px] uppercase text-neutral-500 font-medium">Output</span>
+            <span id="char-count" class="text-[10px] text-neutral-600 tabular-nums"></span>
+          </div>
+          <div class="bg-panel border border-stroke rounded-lg p-5 relative overflow-hidden">
+            <!-- Subtle left accent bar -->
+            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon/60 via-neon/20 to-transparent"></div>
+            <p id="result-text" class="text-lg sm:text-xl font-light text-white tracking-wide break-all pl-3 min-h-[1.8em]"></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="fade-up fade-up-delay-3 mt-12 flex items-center justify-between text-[10px] text-neutral-600 uppercase tracking-[0.2em]">
+        <span>v1.0</span>
+        <span class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-neon/50"></span>
+          ready
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
