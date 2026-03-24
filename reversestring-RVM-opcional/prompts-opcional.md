@@ -1,0 +1,4 @@
+El resultado del desarrollo de la aplicación web para invertir el orden de una cadena de texto introducida por el usuario ha sido realmente el esperado.
+A continuación, siguiendo las mismas reglas y instrucciones dadas en el anterior prompt y manteniendo la calidad y uso de buenas prácticas, tomando como contexto de esta nueva solicitud el resultado obtenido en la anterior petición, quiero que realices las siguientes mejoras:
+- Actualiza la función validateInput para que el botón de "Reverse" solo se habilite cuando el input introducido por el usuario contenga al menos 4 caracteres.
+- La cadena invertida debe actualizarse en tiempo real a medida que el usuario escribe en el input, sin necesidad de hacer clic en el botón "Reverse".

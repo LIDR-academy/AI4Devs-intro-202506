@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --text-color: #1a1a1a;
+            --primary-color: #4f46e5;
+            --secondary-color: #6366f1;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --disabled-color: #9ca3af;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --text-color: #f9fafb;
+            --primary-color: #818cf8;
+            --secondary-color: #6366f1;
+            --card-bg: #1f2933;
+            --border-color: #374151;
+            --disabled-color: #4b5563;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .description {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        input {
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem;
+            font-weight: bold;
+        }
+
+        .reverse-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .reverse-btn:disabled {
+            background: var(--disabled-color);
+            cursor: not-allowed;
+        }
+
+        .result-container {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .result {
+            flex: 1;
+            padding: 0.7rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .copy-btn {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 1.5rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Reverse String Tool</h1>
+        <button class="theme-toggle" id="themeToggle">Dark Mode</button>
+    </header>
+
+    <main>
+        <div class="card">
+            <p class="description">
+                Introduce un texto (mínimo 4 caracteres) y obtén su versión invertida en tiempo real.
+            </p>
+
+            <div class="input-group">
+                <input type="text" id="textInput" placeholder="Introduce tu texto..." />
+                <button class="reverse-btn" id="reverseBtn" disabled>Reverse</button>
+            </div>
+
+            <div class="result-container">
+                <input type="text" id="resultOutput" class="result" readonly />
+                <button class="copy-btn" id="copyBtn">Copy</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

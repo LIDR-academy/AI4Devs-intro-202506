@@ -1,0 +1,2 @@
+El chatbot utilizado ha sido CHAT-GPT, modelo GPT-5.3.
+Personalmente me gusta utilizar Claude en mi día a día, pero he ejecutado el mismo prompt en Claude Sonnet 4.6 y el resultado ha sido, a mi entender, demasiado "completo", con mucha más información y desarrollo de lo solicitado, por lo que he decidido quedarme con la respuesta de CHAT-GPT para obtener un resultado más ajustado a lo solicitado.
