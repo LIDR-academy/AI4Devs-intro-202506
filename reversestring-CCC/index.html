@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>    
+</head>
+<body>
+    <h1>Reverse String</h1>
+    <input type="text" id="inputStr" placeholder="Escribe algo..." oninput="handleInput(this.value)" />
+    <button id="btn" style="display:none" onclick="document.getElementById('result').textContent = reverseString(document.getElementById('inputStr').value)">
+        Invertir
+    </button>
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+    <script>
+        function handleInput(value) {
+            document.getElementById('btn').style.display = value.length >= 3 ? 'inline' : 'none';
+            document.getElementById('result').textContent = reverseString(value);
+        }
+    </script>
+</body>
+</html>
