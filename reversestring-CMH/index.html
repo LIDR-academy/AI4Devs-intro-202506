@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reverse String</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="script.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f1a;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(120, 40, 200, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(40, 120, 255, 0.12) 0%, transparent 60%);
+    }
+
+    .card {
+      width: min(480px, 90vw);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 48px 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-header { text-align: center; margin-bottom: 36px; }
+
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: -0.5px;
+    }
+
+    p.subtitle {
+      margin-top: 6px;
+      font-size: 0.875rem;
+      color: #64748b;
+      font-weight: 300;
+    }
+
+    .input-group { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]::placeholder { color: #475569; }
+
+    input[type="text"]:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+    }
+
+    button#reverseBtn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+      margin-bottom: 28px;
+    }
+
+    button#reverseBtn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45);
+    }
+
+    button#reverseBtn:active { transform: translateY(0); opacity: 1; }
+
+    .result-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 20px 18px;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .result-box.has-result {
+      border-color: rgba(124, 58, 237, 0.4);
+      background: rgba(124, 58, 237, 0.07);
+    }
+
+    .result-placeholder {
+      color: #334155;
+      font-size: 0.875rem;
+      font-style: italic;
+    }
+
+    #resultText {
+      color: #a78bfa;
+      font-size: 1.15rem;
+      font-weight: 600;
+      word-break: break-all;
+      text-align: center;
+      letter-spacing: 0.02em;
+      animation: fadeSlideIn 0.35s ease forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      min-height: 24px;
+    }
+
+    .result-label {
+      font-size: 0.78rem;
+      color: #475569;
+    }
+
+    #copyBtn {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      border-radius: 8px;
+      color: #a78bfa;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    #copyBtn:hover {
+      background: rgba(124, 58, 237, 0.28);
+      border-color: rgba(124, 58, 237, 0.6);
+    }
+
+    #copyBtn.copied {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="icon">⇄</div>
+      <h1>Reverse String</h1>
+      <p class="subtitle">Invierte cualquier cadena de texto al instante</p>
+    </div>
+
+    <div class="input-group">
+      <label for="inputText">Cadena de texto</label>
+      <input type="text" id="inputText" placeholder="Escribe algo aquí..." autocomplete="off" />
+    </div>
+
+    <button id="reverseBtn">⇄ Reverse</button>
+
+    <label>Resultado</label>
+    <div class="result-box" id="resultBox">
+      <span class="result-placeholder" id="placeholder">El resultado aparecerá aquí</span>
+      <span id="resultText" style="display:none;"></span>
+    </div>
+    <div class="result-footer">
+      <p class="result-label" id="resultLabel"></p>
+      <button id="copyBtn">
+        <span id="copyIcon">⎘</span>
+        <span id="copyText">Copy</span>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
