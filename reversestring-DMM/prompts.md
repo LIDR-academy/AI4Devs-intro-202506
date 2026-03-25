@@ -22,3 +22,7 @@ Chatbot utilizado: Gemini 3 (Razonamiento)
     - Uso del último estándar de JS (ECMAScript) adoptado por la mayoría de navegadores
     - CSS3
     ´´´
+
+2. Introducción de atributo defer en la carga del JS
+
+    Elimina la necesidad de la subscripción al evento DOMContentLoaded
