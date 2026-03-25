@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f5f2ed;
+            --ink: #1a1814;
+            --accent: #c8442a;
+            --muted: #9e9890;
+            --line: #d8d4cc;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: 'DM Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.4rem;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-bottom: 3.5rem;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .field {
+            border-bottom: 1.5px solid var(--ink);
+            padding-bottom: 0.75rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .field::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        .field:focus-within::after {
+            width: 100%;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'DM Mono', monospace;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--ink);
+            letter-spacing: 0.03em;
+            caret-color: var(--accent);
+        }
+
+        input::placeholder {
+            color: var(--muted);
+        }
+
+        .result-row {
+            border-bottom: 1.5px solid var(--line);
+            padding-bottom: 0.75rem;
+        }
+
+        .result-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-text {
+            font-family: 'DM Mono', monospace;
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+            color: var(--ink);
+            min-height: 1.5em;
+            transition: opacity 0.2s ease;
+        }
+
+        .result-text.empty {
+            color: var(--muted);
+        }
+
+        .footer {
+            margin-top: 4rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--line);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="label">Utility / String</p>
+        <h1>Reverse<br><em>String</em></h1>
+
+        <div class="field">
+            <input type="text" id="inputText" placeholder="Type something…" autocomplete="off" spellcheck="false">
+        </div>
+
+        <div class="result-row">
+            <p class="result-label">Result</p>
+            <p class="result-text empty" id="output">—</p>
+        </div>
+
+        <p class="footer">Characters are reversed in real time</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
