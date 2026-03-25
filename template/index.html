@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <title>Live String Reverser</title>    
 </head>
 <body>
-<script src="script.js"></script>
+
+    <h2>Live Reverser</h2>
+    <input type="text" id="userInput" placeholder="Type at least 3 chars..." oninput="handleLiveReverse()">
+    
+    <button id="statusBtn" disabled>Valid Length</button>
+    
+    <p>Result: <strong id="result"></strong></p>
+
+    <script src="script.js"></script>
 </body>
 </html>
