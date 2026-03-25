@@ -3,52 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>
+    <title>AI Reverse Tool</title>
+
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
         }
 
-        .container {
-            max-width: 400px;
-            margin: auto;
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            color: #e5e7eb;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 30px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 420px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+            animation: fadeIn 0.6s ease;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.05);
+            color: white;
             font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            box-shadow: 0 0 0 2px #6366f1;
+            background: rgba(255,255,255,0.08);
         }
 
         button {
-            padding: 10px;
+            margin-top: 15px;
             width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
             display: none;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(99,102,241,0.4);
         }
 
         .result {
-            margin-top: 15px;
-            font-weight: bold;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            font-size: 15px;
+            min-height: 40px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .result.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Invertir texto</h2>
+    <div class="card">
+        <h1>Invertidor de Texto AI</h1>
 
         <input 
             type="text" 
             id="textInput" 
-            placeholder="Escribe aquí..." 
-        />
+            placeholder="Escribe algo..."
+        >
 
         <button id="reverseBtn">Invertir</button>
 
-        <div class="result">
-            Resultado: <span id="result"></span>
-        </div>
+        <div id="result" class="result"></div>
     </div>
 
     <script src="script.js"></script>

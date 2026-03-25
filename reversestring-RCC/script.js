@@ -3,30 +3,31 @@
     const result = document.getElementById('result');
     const button = document.getElementById('reverseBtn');
 
-    // Función pura para invertir texto
+    // Función pura
     const reverseString = (text) => {
         return text.split('').reverse().join('');
     };
 
-    // Actualiza el resultado en tiempo real
-    const handleInputChange = () => {
+    const updateUI = () => {
         const value = input.value;
 
-        // Mostrar resultado en tiempo real
-        result.textContent = value ? reverseString(value) : '';
-
-        // Mostrar u ocultar botón
-        if (value.length > 3) {
-            button.style.display = 'block';
+        // Resultado en tiempo real
+        if (value) {
+            result.textContent = reverseString(value);
+            result.classList.add('visible');
         } else {
-            button.style.display = 'none';
+            result.textContent = '';
+            result.classList.remove('visible');
         }
+
+        // Mostrar botón solo si > 3 caracteres
+        button.style.display = value.length > 3 ? 'block' : 'none';
     };
 
-    // Evento en tiempo real
-    input.addEventListener('input', handleInputChange);
+    // Evento principal
+    input.addEventListener('input', updateUI);
 
-    // (Opcional UX) botón no calcula, solo refuerza interacción
+    // UX (no lógica)
     button.addEventListener('click', () => {
         input.focus();
     });
