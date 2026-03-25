@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reverse String</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Reverse String</h1>
+
+    <label for="textInput" class="sr-only">Enter text to reverse</label>
+    <input
+      id="textInput"
+      type="text"
+      maxlength="200"
+      placeholder="Hello, welcome to AI4Devs"
+      autocomplete="off"
+    />
+
+    <div id="output" class="output" aria-live="polite"></div>
+
+    <button id="copyBtn" class="btn copy" type="button" disabled>
+      <span class="btn-text">Copy</span>
+      <!-- icon -->
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H10V7h9v14z"></path>
+      </svg>
+    </button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
