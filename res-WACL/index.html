@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Reverser</title>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f6f9;
+      color: #1a1a2e;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4361ee;
+    }
+
+    button {
+      padding: 0.65rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: #4361ee;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #3a56d4; }
+    button:active { background: #2f47b3; }
+
+    /* Output area */
+    .result {
+      margin-top: 1rem;
+      min-height: 2.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      word-break: break-all;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .result--success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    .result--error {
+      background: #ffeaea;
+      color: #c62828;
+    }
+
+    .result--empty {
+      background: transparent;
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>String Reverser</h1>
+    <p class="subtitle">Type a string and hit Reverse (or press Enter)</p>
+
+    <div class="input-group">
+      <input type="text" id="stringInput" placeholder="e.g. AI4Devs" autofocus />
+      <button id="reverseBtn">Reverse</button>
+    </div>
+
+    <!-- Output: result or error message -->
+    <div id="result" class="result result--empty" aria-live="polite"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
