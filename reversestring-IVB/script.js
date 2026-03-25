@@ -1,47 +1,48 @@
-// Wait until the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Get references to DOM elements
+
     const input = document.getElementById('textInput');
     const button = document.getElementById('reverseBtn');
     const result = document.getElementById('result');
 
     /**
-     * Function to reverse a string
-     * @param {string} str
-     * @returns {string}
+     * Reverse string utility
      */
     function reverseString(str) {
-        // Convert string to array, reverse it, then join back
         return str.split('').reverse().join('');
     }
 
     /**
-     * Handle button click
+     * Handle input changes with state logic
      */
-    function handleReverse() {
+    function handleInputChange() {
         const value = input.value;
 
-        // Basic validation
-        if (!value) {
-            result.textContent = 'Please enter a string.';
-            return;
+        if (value.length < 4) {
+            // 🔄 Modo tiempo real
+            result.textContent = reverseString(value);
+            button.style.display = 'none';
+
+        } else {
+            // ⛔ Modo bloqueado (espera botón)
+            button.style.display = 'inline-block';
+            // ⚠️ NO actualizamos el resultado aquí
         }
-
-        // Reverse string
-        const reversed = reverseString(value);
-
-        // Display result
-        result.textContent = reversed;
     }
 
-    // Attach event listener
-    button.addEventListener('click', handleReverse);
+    /**
+     * Handle button click (final calculation)
+     */
+    function handleButtonClick() {
+        const value = input.value;
 
-    // Optional: allow Enter key to trigger reverse
-    input.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            handleReverse();
+        if (value.length >= 4) {
+            result.textContent = reverseString(value);
         }
-    });
+    }
+
+    // Evento principal
+    input.addEventListener('input', handleInputChange);
+
+    // Evento del botón
+    button.addEventListener('click', handleButtonClick);
 });
