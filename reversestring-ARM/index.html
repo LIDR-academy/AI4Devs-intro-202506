@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Reverser</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="card" role="main">
+      <div class="card-header">
+        <h1>String Reverser</h1>
+        <p>
+          Type anything — emojis, symbols, Unicode — and see it reversed
+          instantly.
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="inputStr">Input</label>
+        <input
+          type="text"
+          id="inputStr"
+          placeholder="Type here…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field">
+        <label for="outputStr">Reversed</label>
+        <div class="output-wrap">
+          <output
+            id="outputStr"
+            for="inputStr"
+            aria-live="polite"
+            aria-atomic="true"
+          ></output>
+          <button
+            class="copy-btn"
+            id="copyBtn"
+            aria-label="Copy reversed text"
+            type="button"
+          >
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="clear-btn" id="clearBtn" type="button">Clear</button>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
