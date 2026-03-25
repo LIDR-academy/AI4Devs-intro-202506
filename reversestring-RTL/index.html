@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 80px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Título -->
+    <h2>Reverse String</h2>
+
+    <!-- 2. Cuadro de texto (mínimo 80 caracteres visibles) -->
+    <textarea id="inputText" placeholder="Escribe aquí..." maxlength="200"></textarea>
+
+    <!-- 3. Botón azul con icono -->
+    <br>
+    <button onclick="reverseString()">
+        <span class="icon">🔄</span> Reverse
+    </button>
+
+    <!-- 4. Resultado -->
+    <div id="result"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
