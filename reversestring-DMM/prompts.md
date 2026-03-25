@@ -26,3 +26,5 @@ Chatbot utilizado: Gemini 3 (Razonamiento)
 2. Introducción de atributo defer en la carga del JS
 
     Elimina la necesidad de la subscripción al evento DOMContentLoaded
+
+3. Encapsular la lógica del evento input en un método externo para mejorar la mantenibilidad
