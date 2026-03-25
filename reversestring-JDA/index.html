@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live String Reverser</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; padding-top: 100px; background-color: #f4f7f6; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        input { padding: 12px; width: 100%; box-sizing: border-box; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; outline: none; transition: border-color 0.3s; }
+        input:focus { border-color: #007BFF; }
+        #result { margin-top: 25px; min-height: 1.2em; font-size: 1.5rem; font-weight: bold; color: #007BFF; word-break: break-all; }
+        label { display: block; margin-bottom: 10px; color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Live Reverser</h2>
+    <label for="userInput">Type and watch it flip:</label>
+    <input type="text" id="userInput" placeholder="Start typing..." autofocus>
+    <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
