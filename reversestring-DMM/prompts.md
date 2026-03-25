@@ -28,3 +28,5 @@ Chatbot utilizado: Gemini 3 (Razonamiento)
     Elimina la necesidad de la subscripción al evento DOMContentLoaded
 
 3. Encapsular la lógica del evento input en un método externo para mejorar la mantenibilidad
+
+4. Encapsulación como objeto como namespace para evitar "ensuciar" el espacio global de nombres
