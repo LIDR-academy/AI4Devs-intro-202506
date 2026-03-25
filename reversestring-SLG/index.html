@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverso — String Reverser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <main class="card">
+      <header>
+        <div class="logo-mark">⇄</div>
+        <h1 class="title">Reverso</h1>
+        <p class="subtitle">Type anything — watch it flip</p>
+      </header>
+
+      <section class="field-group">
+        <label for="inputText" class="field-label">Your string</label>
+        <div class="input-wrapper">
+          <input
+            id="inputText"
+            type="text"
+            class="text-input"
+            placeholder="e.g. AI4Devs"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <span class="char-count" id="charCount">0</span>
+        </div>
+      </section>
+
+      <div class="arrow-divider">↓</div>
+
+      <section class="field-group">
+        <label class="field-label">Reversed output</label>
+        <div class="output-box" id="outputBox">
+          <span id="outputText" class="output-text placeholder"
+            >Your reversed string appears here…</span
+          >
+          <button
+            class="copy-btn"
+            id="copyBtn"
+            title="Copy to clipboard"
+            disabled
+          >
+            <span class="copy-icon">⧉</span>
+            <span class="copy-label">Copy</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="toast" id="toast">Copied!</div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
