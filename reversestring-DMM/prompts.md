@@ -30,3 +30,5 @@ Chatbot utilizado: Gemini 3 (Razonamiento)
 3. Encapsular la lógica del evento input en un método externo para mejorar la mantenibilidad
 
 4. Encapsulación como objeto como namespace para evitar "ensuciar" el espacio global de nombres
+
+5. Aplicar la transformación solo si hay al menos 3 letras. Si hay menos mostrar un mensaje diciendo que no hay texto suficiente
