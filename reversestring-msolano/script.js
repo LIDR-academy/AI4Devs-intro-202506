@@ -1,15 +1,17 @@
-document.getElementById("reverseBtn").addEventListener("click", function () {
-    const input = document.getElementById("inputText").value;
+const inputText = document.getElementById("inputText");
+const reverseBtn = document.getElementById("reverseBtn");
+const result = document.getElementById("result");
 
-    // Validación básica
-    if (!input) {
-        document.getElementById("result").textContent = "Please enter a value";
-        return;
+inputText.addEventListener("input", function () {
+    const text = inputText.value;
+
+    // Mostrar el botón solo si el texto tiene más de 3 caracteres
+    if (text.length > 3) {
+        reverseBtn.style.display = "inline-block";
+    } else {
+        reverseBtn.style.display = "none";
     }
 
-    // Invertir cadena
-    const reversed = input.split('').reverse().join('');
-
-    // Mostrar resultado
-    document.getElementById("result").textContent = reversed;
+    // Actualizar el texto invertido en tiempo real
+    result.textContent = text.split("").reverse().join("");
 });
