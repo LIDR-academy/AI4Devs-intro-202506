@@ -1,0 +1,2 @@
+
+Actua como desarrolladores de software especialsta en front end y en javascript. Necesitamos crear una pagina HTML basado index.html (provisto) que invierta el orden de una cadena de texto. El usuario empesará a escribir el texto en un input y el resultado se mostrará en un elemento h1. El resultado se deberá mostrar conforme el usuario vaya tecleando. Por ejemplo si el usuario teclea: H, en el output se mostrará: H, si a continuacion teclea: o, en el output se mostrará: oH, y asi sucesivamente.
