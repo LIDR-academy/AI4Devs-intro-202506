@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --ink: #1a1a18;
+            --paper: #f5f0e8;
+            --accent: #c8392b;
+            --muted: #8a8578;
+            --border: #d4cfc4;
+            --mono: 'DM Mono', monospace;
+            --display: 'Playfair Display', serif;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--mono);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.6;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 640px;
+            animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            border-top: 3px solid var(--ink);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 0 1rem;
+            margin-bottom: 2.8rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .label-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 2px 7px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: var(--display);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        #inputText {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--ink);
+            padding: 0.6rem 0;
+            font-family: var(--mono);
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s;
+            caret-color: var(--accent);
+        }
+
+        #inputText:focus {
+            border-color: var(--accent);
+        }
+
+        #inputText::placeholder {
+            color: var(--border);
+        }
+
+        .btn {
+            margin-top: 1.6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            cursor: pointer;
+            transition: background 0.18s, transform 0.1s;
+        }
+
+        .btn:hover { background: var(--accent); }
+        .btn:active { transform: scale(0.97); }
+
+        .btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+        /* Result area */
+        .result-block {
+            margin-top: 2.4rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.6rem;
+            display: none;
+            animation: fadeUp 0.4s cubic-bezier(.22,1,.36,1) both;
+        }
+
+        .result-block.visible { display: block; }
+
+        .result-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.7rem;
+        }
+
+        #outputText {
+            font-family: var(--display);
+            font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--accent);
+            word-break: break-all;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+
+        .copy-row {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 4px 10px;
+            cursor: pointer;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .copy-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+        .copy-confirm {
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+        }
+
+        .copy-confirm.show { opacity: 1; }
+
+        footer {
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <span class="label-tag">Util</span>
+            <h1>Reverse String</h1>
+        </header>
+
+        <div class="input-group">
+            <label class="input-label" for="inputText">Cadena de entrada</label>
+            <input
+                type="text"
+                id="inputText"
+                placeholder="AI4Devs"
+                autocomplete="off"
+                spellcheck="false"
+            />
+        </div>
+
+        <button class="btn" onclick="reverseString()">
+            <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3"/></svg>
+            Invertir
+        </button>
+
+        <div class="result-block" id="resultBlock">
+            <p class="result-label">Resultado</p>
+            <div id="outputText"></div>
+            <div class="copy-row">
+                <button class="copy-btn" onclick="copyResult()">Copiar</button>
+                <span class="copy-confirm" id="copyConfirm">¡Copiado!</span>
+            </div>
+        </div>
+
+        <footer>
+            <span>Reverse String ES</span>
+            <span>JS · Vanilla</span>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
