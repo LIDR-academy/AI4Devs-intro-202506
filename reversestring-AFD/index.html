@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse String Tool</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ─── Design Tokens ─── */
+        :root {
+            --bg:          #0a0a0f;
+            --surface:     #13131c;
+            --border:      #2a2a40;
+            --accent:      #e8ff47;
+            --accent-dim:  #b8cc2a;
+            --text:        #f0f0f8;
+            --muted:       #6b6b8a;
+            --danger:      #ff6b6b;
+            --radius:      14px;
+            --mono:        'JetBrains Mono', monospace;
+            --sans:        'Syne', sans-serif;
+        }
+
+        /* ─── Reset ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ─── Base ─── */
+        body {
+            min-height: 100vh;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                    linear-gradient(rgba(232,255,71,.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(232,255,71,.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glowing orb */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(232,255,71,.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── Card ─── */
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 580px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem 2.5rem 2rem;
+            box-shadow:
+                    0 0 0 1px rgba(232,255,71,.06),
+                    0 32px 80px rgba(0,0,0,.6);
+        }
+
+        /* ─── Header ─── */
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(232,255,71,.08);
+            border: 1px solid rgba(232,255,71,.2);
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: .4; transform: scale(.7); }
+        }
+
+        h1 {
+            font-size: clamp(1.9rem, 5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -.02em;
+            color: var(--text);
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            margin-top: .6rem;
+            font-size: .875rem;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-weight: 400;
+        }
+
+        /* ─── Input Area ─── */
+        .input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .input-label {
+            display: block;
+            font-size: .72rem;
+            font-family: var(--mono);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: .5rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            background: rgba(255,255,255,.03);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-family: var(--mono);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            padding: 1rem 1.1rem;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s, background .2s;
+            letter-spacing: .03em;
+        }
+
+        textarea::placeholder { color: var(--muted); }
+
+        textarea:focus {
+            border-color: var(--accent);
+            background: rgba(232,255,71,.03);
+            box-shadow: 0 0 0 3px rgba(232,255,71,.1);
+        }
+
+        /* ─── Buttons ─── */
+        .btn-row {
+            display: flex;
+            gap: .75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .85rem 1.2rem;
+            border-radius: var(--radius);
+            font-family: var(--sans);
+            font-size: .95rem;
+            font-weight: 700;
+            letter-spacing: .02em;
+            cursor: pointer;
+            border: none;
+            transition: transform .15s, box-shadow .15s, opacity .15s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active { transform: scale(.97); }
+
+        /* Primary — Reverse */
+        .btn-primary {
+            background: var(--accent);
+            color: #0a0a0f;
+            box-shadow: 0 4px 20px rgba(232,255,71,.25);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 28px rgba(232,255,71,.4);
+            background: #f2ff6e;
+        }
+
+        /* Shine sweep on primary */
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+            transform: skewX(-20deg);
+            transition: left .4s ease;
+        }
+        .btn-primary:hover::after { left: 160%; }
+
+        /* Secondary — Clear */
+        .btn-secondary {
+            background: transparent;
+            color: var(--muted);
+            border: 1.5px solid var(--border);
+            flex: 0 0 auto;
+            padding: .85rem 1.25rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--muted);
+            color: var(--text);
+        }
+
+        .btn-icon { font-size: 1.1rem; }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            font-family: var(--mono);
+            font-size: .68rem;
+            color: var(--muted);
+            text-align: right;
+            margin-top: -.75rem;
+            margin-bottom: 1rem;
+            letter-spacing: .04em;
+        }
+
+        kbd {
+            background: var(--border);
+            color: var(--muted);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-family: var(--mono);
+            font-size: .65rem;
+        }
+
+        /* ─── Result ─── */
+        .result-wrapper {
+            background: rgba(232,255,71,.04);
+            border: 1.5px solid rgba(232,255,71,.15);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.3rem;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .3s ease, transform .3s ease;
+            pointer-events: none;
+        }
+
+        .result-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .result-wrapper.empty {
+            border-color: rgba(255,107,107,.2);
+            background: rgba(255,107,107,.04);
+        }
+
+        .result-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: .6rem;
+        }
+
+        .result-tag {
+            font-family: var(--mono);
+            font-size: .68rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .result-wrapper.empty .result-tag { color: var(--danger); }
+
+        #charCount {
+            font-family: var(--mono);
+            font-size: .68rem;
+            color: var(--muted);
+        }
+
+        #resultLabel {
+            font-family: var(--mono);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: .06em;
+            word-break: break-all;
+            line-height: 1.5;
+            min-height: 1.7rem;
+        }
+
+        .result-wrapper.empty #resultLabel {
+            color: var(--danger);
+            font-size: .9rem;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        /* ─── Divider ─── */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 1.75rem 0 1.25rem;
+        }
+
+        /* ─── Footer tip ─── */
+        .footer-tip {
+            font-family: var(--mono);
+            font-size: .7rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .footer-tip::before {
+            content: '//';
+            color: var(--accent);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="badge">Utilidad · String</div>
+        <h1>Reverse<br /><span>String</span></h1>
+        <p class="subtitle">// invierte el orden de tus caracteres al instante</p>
+    </div>
+
+    <!-- Input -->
+    <div class="input-group">
+        <label class="input-label" for="inputText">Texto de entrada</label>
+        <textarea
+                id="inputText"
+                placeholder="Escribe o pega tu texto aquí…  ej: HOLA MUNDO"
+                spellcheck="false"
+                autocomplete="off"
+        ></textarea>
+    </div>
+
+    <p class="keyboard-hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> para revertir</p>
+
+    <!-- Buttons -->
+    <div class="btn-row">
+        <button class="btn btn-primary" onclick="handleReverse()">
+            <span class="btn-icon">⇄</span>
+            Revertir cadena
+        </button>
+        <button class="btn btn-secondary" onclick="handleClear()" title="Limpiar">
+            ✕
+        </button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-wrapper" id="resultWrapper">
+        <div class="result-meta">
+            <span class="result-tag">Resultado</span>
+            <span id="charCount"></span>
+        </div>
+        <div id="resultLabel"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="footer-tip">
+        Los caracteres se invierten incluyendo espacios y símbolos.
+    </p>
+
+</div>
+
+<!-- External logic -->
+<script src="script.js"></script>
+
+</body>
+</html>
